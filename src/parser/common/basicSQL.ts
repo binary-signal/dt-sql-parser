@@ -808,6 +808,8 @@ export abstract class BasicSQL<
          * And the new parse tree should not effect cached parse tree which is used by validate and getSuggestionAtCaretPosition method.
          */
         const parser = this.createParser(input);
+        // Errors are reported by validate; without this the default listener logs them to the console
+        parser.removeErrorListeners();
         const allTokens = (parser.tokenStream as CommonTokenStream).getTokens();
 
         const caretTokenIndex = caretPosition
