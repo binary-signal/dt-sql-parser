@@ -1,0 +1,2178 @@
+[
+    {
+        "source": "FlinkSqlParserImplTest.java:75",
+        "sql": "show catalogs"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:77",
+        "sql": "show catalogs like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:78",
+        "sql": "show catalogs not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:80",
+        "sql": "show catalogs ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:81",
+        "sql": "show catalogs not ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:94",
+        "sql": "show current catalog"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:99",
+        "sql": "describe catalog a"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:100",
+        "sql": "describe catalog extended a"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:102",
+        "sql": "desc catalog a"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:103",
+        "sql": "desc catalog extended a"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:108",
+        "sql": "alter catalog a set ('k1'='v1', 'k2'='v2')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:110",
+        "sql": "alter catalog a reset ('k1')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:111",
+        "sql": "alter catalog a comment 'comment1'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:116",
+        "sql": "select\n  array_agg(ename respect nulls order by deptno, ename) as c1,\n  array_agg(ename order by deptno, ename desc) as c2,\n  array_agg(distinct ename) as c3,\n  array_agg(ename) as c4\nfrom emp group by gender"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:170",
+        "sql": "use catalog a"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:200",
+        "sql": "show create catalog c1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:205",
+        "sql": "drop catalog c1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:210",
+        "sql": "show databases"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:212",
+        "sql": "show databases like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:213",
+        "sql": "show databases not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:215",
+        "sql": "show databases from c1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:216",
+        "sql": "show databases in c1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:218",
+        "sql": "show databases from c1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:219",
+        "sql": "show databases from c1 ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:220",
+        "sql": "show databases in c1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:221",
+        "sql": "show databases in c1 ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:223",
+        "sql": "show databases from c1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:224",
+        "sql": "show databases from c1 not ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:225",
+        "sql": "show databases in c1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:226",
+        "sql": "show databases in c1 not ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:240",
+        "sql": "show current database"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:245",
+        "sql": "use default_db"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:246",
+        "sql": "use defaultCatalog.default_db"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:251",
+        "sql": "create database db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:252",
+        "sql": "create database if not exists db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:253",
+        "sql": "create database catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:272",
+        "sql": "drop database db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:273",
+        "sql": "drop database catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:274",
+        "sql": "drop database db1 RESTRICT"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:275",
+        "sql": "drop database db1 CASCADE"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:291",
+        "sql": "describe database db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:292",
+        "sql": "describe database catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:293",
+        "sql": "describe database extended db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:295",
+        "sql": "desc database db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:296",
+        "sql": "desc database catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:297",
+        "sql": "desc database extended db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:302",
+        "sql": "alter function function1 as 'org.apache.flink.function.function1'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:305",
+        "sql": "alter temporary function function1 as 'org.apache.flink.function.function1'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:309",
+        "sql": "alter temporary function function1 as 'org.apache.flink.function.function1' language scala"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:313",
+        "sql": "alter temporary system function function1 as 'org.apache.flink.function.function1'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:317",
+        "sql": "alter temporary system function function1 as 'org.apache.flink.function.function1' language java"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:324",
+        "sql": "show functions"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:325",
+        "sql": "show user functions"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:327",
+        "sql": "show functions like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:328",
+        "sql": "show functions not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:329",
+        "sql": "show user functions like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:330",
+        "sql": "show user functions not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:332",
+        "sql": "show functions from db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:333",
+        "sql": "show user functions from db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:334",
+        "sql": "show functions in db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:335",
+        "sql": "show user functions in db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:337",
+        "sql": "show functions from catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:338",
+        "sql": "show user functions from catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:340",
+        "sql": "show functions in catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:341",
+        "sql": "show user functions in catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:343",
+        "sql": "show functions from db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:344",
+        "sql": "show user functions from db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:345",
+        "sql": "show functions in db1 ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:346",
+        "sql": "show user functions in db1 ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:348",
+        "sql": "show functions from catalog1.db1 ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:350",
+        "sql": "show user functions from catalog1.db1 ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:352",
+        "sql": "show functions in catalog1.db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:354",
+        "sql": "show user functions in catalog1.db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:357",
+        "sql": "show functions from db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:358",
+        "sql": "show user functions from db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:360",
+        "sql": "show functions in db1 not ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:361",
+        "sql": "show user functions in db1 not ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:364",
+        "sql": "show functions from catalog1.db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:366",
+        "sql": "show user functions from catalog1.db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:368",
+        "sql": "show functions in catalog1.db1 not ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:370",
+        "sql": "show user functions in catalog1.db1 not ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:385",
+        "sql": "show procedures"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:386",
+        "sql": "show procedures not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:388",
+        "sql": "show procedures from db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:389",
+        "sql": "show procedures in db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:391",
+        "sql": "show procedures from catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:392",
+        "sql": "show procedures in catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:394",
+        "sql": "show procedures from db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:395",
+        "sql": "show procedures in db1 ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:397",
+        "sql": "show procedures from catalog1.db1 Ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:399",
+        "sql": "show procedures in catalog1.db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:402",
+        "sql": "show procedures from db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:403",
+        "sql": "show procedures in db1 not ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:405",
+        "sql": "show procedures from catalog1.db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:407",
+        "sql": "show procedures in catalog1.db1 not ilike '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:423",
+        "sql": "show tables"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:424",
+        "sql": "show tables not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:426",
+        "sql": "show tables from db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:427",
+        "sql": "show tables in db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:429",
+        "sql": "show tables from catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:430",
+        "sql": "show tables in catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:432",
+        "sql": "show tables from db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:433",
+        "sql": "show tables in db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:435",
+        "sql": "show tables from catalog1.db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:437",
+        "sql": "show tables in catalog1.db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:439",
+        "sql": "show tables from db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:440",
+        "sql": "show tables in db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:442",
+        "sql": "show tables from catalog1.db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:444",
+        "sql": "show tables in catalog1.db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:460",
+        "sql": "show create model m1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:461",
+        "sql": "show create model catalog1.db1.m1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:466",
+        "sql": "show create table tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:467",
+        "sql": "show create table catalog1.db1.tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:472",
+        "sql": "show create view v1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:473",
+        "sql": "show create view db1.v1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:474",
+        "sql": "show create view catalog1.db1.v1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:479",
+        "sql": "describe tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:480",
+        "sql": "describe catalog1.db1.tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:481",
+        "sql": "describe extended db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:483",
+        "sql": "desc tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:484",
+        "sql": "desc catalog1.db1.tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:485",
+        "sql": "desc extended db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:490",
+        "sql": "describe model mdl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:491",
+        "sql": "describe model catalog1.db1.mdl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:493",
+        "sql": "desc model mdl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:494",
+        "sql": "desc model catalog1.db1.mdl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:499",
+        "sql": "describe function fn"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:500",
+        "sql": "describe function catalog1.db1.fn"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:501",
+        "sql": "describe function extended fn"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:503",
+        "sql": "desc function fn"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:504",
+        "sql": "desc function catalog1.db1.fn"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:505",
+        "sql": "desc function extended fn"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:510",
+        "sql": "show columns from tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:511",
+        "sql": "show columns in tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:513",
+        "sql": "show columns from db1.tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:514",
+        "sql": "show columns in db1.tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:516",
+        "sql": "show columns from catalog1.db1.tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:517",
+        "sql": "show columns in catalog1.db1.tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:519",
+        "sql": "show columns from tbl like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:520",
+        "sql": "show columns in tbl like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:522",
+        "sql": "show columns from db1.tbl like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:523",
+        "sql": "show columns in db1.tbl like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:525",
+        "sql": "show columns from catalog1.db1.tbl like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:527",
+        "sql": "show columns in catalog1.db1.tbl like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:530",
+        "sql": "show columns from tbl not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:531",
+        "sql": "show columns in tbl not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:533",
+        "sql": "show columns from db1.tbl not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:535",
+        "sql": "show columns in db1.tbl not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:537",
+        "sql": "show columns from catalog1.db1.tbl not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:539",
+        "sql": "show columns in catalog1.db1.tbl not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:545",
+        "sql": "alter table t1 rename to t2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:546",
+        "sql": "alter table if exists t1 rename to t2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:548",
+        "sql": "alter table c1.d1.t1 rename to t2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:549",
+        "sql": "alter table if exists c1.d1.t1 rename to t2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:552",
+        "sql": "alter table t1 set ('key1'='value1')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:554",
+        "sql": "alter table if exists t1 set ('key1'='value1')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:568",
+        "sql": "alter table t1 add constraint ct1 primary key(a, b) not enforced"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:573",
+        "sql": "alter table if exists t1 add constraint ct1 primary key(a, b) not enforced"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:581",
+        "sql": "alter table if exists t1 add unique(a, b)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:584",
+        "sql": "alter table t1 drop constraint ct1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:585",
+        "sql": "alter table if exists t1 drop constraint ct1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:588",
+        "sql": "alter table t1 rename a to b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:589",
+        "sql": "alter table if exists t1 rename a to b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:591",
+        "sql": "alter table if exists t1 rename a.x to a.y"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:598",
+        "sql": "alter table t1 add new_column array<row(f0 int, f1 bigint)> comment 'new_column docs'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:604",
+        "sql": "alter table t1 add (new_row row(f0 int, f1 bigint) comment 'new_column docs', f2 as new_row.f0 + 1)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:612",
+        "sql": "alter table t1 add (new_row.f2 array<int>)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:616",
+        "sql": "alter table t1 add (new_row.f2 array<int> after new_row.f0)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:625",
+        "sql": "alter table if exists t1 add new_column int not null"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:630",
+        "sql": "alter table t1 add new_column string comment 'new_column docs'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:635",
+        "sql": "alter table t1 add new_column string comment 'new_column docs' first"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:640",
+        "sql": "alter table t1 add new_column string comment 'new_column docs' after id"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:646",
+        "sql": "alter table t1 add col_int as col_a - col_b after col_b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:652",
+        "sql": "alter table t1 add col_int int metadata from 'mk1' virtual comment 'comment_metadata' after col_b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:661",
+        "sql": "alter table if exists t1 add watermark for ts as ts"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:663",
+        "sql": "alter table t1 add watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:668",
+        "sql": "alter table default_database.t1 add watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:673",
+        "sql": "alter table default_catalog.default_database.t1 add watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:688",
+        "sql": "alter table t1 add DISTRIBUTION BY HASH(a) INTO 6 BUCKETS"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:691",
+        "sql": "alter table t1 add DISTRIBUTION BY HASH(a, h) INTO 6 BUCKETS"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:694",
+        "sql": "alter table tbl1 add DISTRIBUTION BY RANGE(a, h) INTO 6 BUCKETS"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:700",
+        "sql": "alter table tbl1 add DISTRIBUTION BY (a, h) INTO 6 BUCKETS"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:703",
+        "sql": "alter table tbl1 add DISTRIBUTION BY RANGE(a, h)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:706",
+        "sql": "alter table tbl1 add DISTRIBUTION BY (a, h)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:712",
+        "sql": "alter table t1 modify DISTRIBUTION BY HASH(a) INTO 6 BUCKETS"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:715",
+        "sql": "alter table tbl1 modify DISTRIBUTION BY HASH(a, h) INTO 6 BUCKETS"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:718",
+        "sql": "alter table tbl1 modify DISTRIBUTION BY RANGE(a, h) INTO 6 BUCKETS"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:724",
+        "sql": "alter table tbl1 modify DISTRIBUTION BY (a, h) INTO 6 BUCKETS"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:727",
+        "sql": "alter table tbl1 modify DISTRIBUTION BY RANGE(a, h)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:730",
+        "sql": "alter table tbl1 modify DISTRIBUTION BY (a, h)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:736",
+        "sql": "alter table t1 drop DISTRIBUTION"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:778",
+        "sql": "alter table if exists t1 modify new_column string comment 'new_column docs'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:783",
+        "sql": "alter table t1 modify new_column string comment 'new_column docs'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:788",
+        "sql": "alter table t1 modify new_column string comment 'new_column docs' first"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:793",
+        "sql": "alter table t1 modify new_column string comment 'new_column docs' after id"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:799",
+        "sql": "alter table t1 modify new_column array<string not null> not null"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:806",
+        "sql": "alter table t1 modify col_int as col_a - col_b after col_b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:812",
+        "sql": "alter table t1 modify col_int int metadata from 'mk1' virtual comment 'comment_metadata' after col_b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:819",
+        "sql": "alter table t1 modify row_column.f0 int not null comment 'change nullability'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:826",
+        "sql": "alter table t1 modify row_column.f0 int after row_column.f2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:835",
+        "sql": "alter table if exists t1 modify watermark for ts as ts"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:840",
+        "sql": "alter table t1 modify watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:845",
+        "sql": "alter table default_database.t1 modify watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:850",
+        "sql": "alter table default_catalog.default_database.t1 modify watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:865",
+        "sql": "alter table t1 modify constraint ct1 primary key(a, b) not enforced"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:870",
+        "sql": "alter table t1 modify unique(a, b)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:901",
+        "sql": "alter table if exists t1 drop id"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:903",
+        "sql": "alter table t1 drop id"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:905",
+        "sql": "alter table t1 drop (id)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:907",
+        "sql": "alter table t1 drop tuple.id"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:913",
+        "sql": "alter table if exists t1 drop (id, ts, tuple.f0, tuple.f1)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:921",
+        "sql": "alter table t1 drop (id, ts, tuple.f0, tuple.f1)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:933",
+        "sql": "alter table if exists t1 drop primary key"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:935",
+        "sql": "alter table t1 drop primary key"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:940",
+        "sql": "alter table if exists t1 drop constraint ct"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:942",
+        "sql": "alter table t1 drop constraint ct"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:950",
+        "sql": "alter table if exists t1 drop watermark"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:952",
+        "sql": "alter table t1 drop watermark"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:957",
+        "sql": "alter table if exists t1 reset ('key1')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:960",
+        "sql": "alter table t1 reset ('key1')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:962",
+        "sql": "alter table t1 reset ('key1', 'key2')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:965",
+        "sql": "alter table t1 reset()"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:970",
+        "sql": "alter table c1.d1.tbl add partition (p1=1,p2='a')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:973",
+        "sql": "alter table tbl add partition (p1=1,p2='a') with ('k1'='v1')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:979",
+        "sql": "alter table tbl add if not exists partition (p=1) partition (p=2) with ('k1' = 'v1')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:989",
+        "sql": "alter table c1.d1.tbl drop if exists partition (p=1)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:991",
+        "sql": "alter table tbl drop partition (p1='a',p2=1), partition(p1='b',p2=2)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:997",
+        "sql": "alter table tbl drop partition (p1='a',p2=1), partition(p1='b',p2=2), partition(p1='c',p2=3)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2210",
+        "sql": "insert into \"emps\" partition (\"x\"='ab', \"y\"='bc')(\"x\",\"y\") select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2223",
+        "sql": "insert into emps(z boolean) partition (z='ab') (x,y) select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2265",
+        "sql": "INSERT INTO t1 SELECT * FROM t2 ON CONFLICT DO ERROR"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2269",
+        "sql": "INSERT INTO t1 SELECT * FROM t2 ON CONFLICT DO NOTHING"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2273",
+        "sql": "INSERT INTO t1 SELECT * FROM t2 ON CONFLICT DO DEDUPLICATE"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2277",
+        "sql": "INSERT INTO t1 PARTITION (p='v') SELECT * FROM t2 ON CONFLICT DO ERROR"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2282",
+        "sql": "INSERT OVERWRITE t1 SELECT * FROM t2 ON CONFLICT DO NOTHING"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2384",
+        "sql": "ALTER VIEW v1 RENAME TO v2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2385",
+        "sql": "ALTER VIEW v1 AS SELECT c1, c2 FROM tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2391",
+        "sql": "show views"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2392",
+        "sql": "show views not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2394",
+        "sql": "show views from db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2395",
+        "sql": "show views in db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2397",
+        "sql": "show views from catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2398",
+        "sql": "show views in catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2400",
+        "sql": "show views from db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2401",
+        "sql": "show views in db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2403",
+        "sql": "show views from catalog1.db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2405",
+        "sql": "show views in catalog1.db1 like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2407",
+        "sql": "show views from db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2408",
+        "sql": "show views in db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2410",
+        "sql": "show views from catalog1.db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2412",
+        "sql": "show views in catalog1.db1 not like '%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2428",
+        "sql": "show partitions c1.d1.tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2429",
+        "sql": "show partitions tbl partition (p=1)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2475",
+        "sql": "create function catalog1.db1.function1 as 'org.apache.flink.function.function1'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2479",
+        "sql": "create temporary function catalog1.db1.function1 as 'org.apache.flink.function.function1'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2483",
+        "sql": "create temporary function db1.function1 as 'org.apache.flink.function.function1'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2487",
+        "sql": "create temporary function function1 as 'org.apache.flink.function.function1'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2491",
+        "sql": "create temporary function if not exists catalog1.db1.function1 as 'org.apache.flink.function.function1'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2495",
+        "sql": "create temporary function function1 as 'org.apache.flink.function.function1' language java"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2499",
+        "sql": "create temporary system function  function1 as 'org.apache.flink.function.function1' language scala"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2583",
+        "sql": "create function function1 as 'org.apache.flink.function.function1' language java using jar 'file:///path/to/test.jar', artifact 'hdfs:///path/to/test2.jar'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2587",
+        "sql": "create function function1 as 'org.apache.flink.function.function1' language java using artifact 'file:///path/to/test.jar', jar 'hdfs:///path/to/test2.jar'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2602",
+        "sql": "drop temporary function catalog1.db1.function1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2605",
+        "sql": "drop temporary system function catalog1.db1.function1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2608",
+        "sql": "drop temporary function if exists catalog1.db1.function1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2611",
+        "sql": "drop temporary system function if exists catalog1.db1.function1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2617",
+        "sql": "load module core"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2619",
+        "sql": "load module dummy with ('k1' = 'v1', 'k2' = 'v2')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2633",
+        "sql": "unload module core"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2641",
+        "sql": "use modules core"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2643",
+        "sql": "use modules x, y, z"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2653",
+        "sql": "show modules"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2655",
+        "sql": "show full modules"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2660",
+        "sql": "begin statement set"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2665",
+        "sql": "end"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2670",
+        "sql": "execute statement set begin insert into t1 select * from t2; insert into t2 select * from t3; end"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2686",
+        "sql": "explain statement set begin insert into t1 select * from t2; insert into t2 select * from t3; end"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2702",
+        "sql": "explain execute statement set begin insert into t1 select * from t2; insert into t2 select * from t3; end"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2718",
+        "sql": "execute statement set begin insert into t1 select * from t2 on conflict do deduplicate; insert into t3 select * from t4 on conflict do nothing; end"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2739",
+        "sql": "explain execute select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2744",
+        "sql": "explain execute insert into emps1 select * from emps2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2852",
+        "sql": "explain plan for insert into emps1 select * from emps2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2858",
+        "sql": "execute insert into emps1 select * from emps2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2863",
+        "sql": "execute plan './test.json'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2864",
+        "sql": "execute plan '/some/absolute/dir/plan.json'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2866",
+        "sql": "execute plan 'file:///foo/bar/test.json'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2872",
+        "sql": "compile plan './test.json' for insert into t1 select * from t2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2877",
+        "sql": "compile plan './test.json' if not exists for insert into t1 select * from t2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2882",
+        "sql": "compile plan 'file:///foo/bar/test.json' if not exists for insert into t1 select * from t2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2888",
+        "sql": "compile plan './test.json' for statement set begin insert into t1 select * from t2; insert into t2 select * from t3; end"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2901",
+        "sql": "compile plan './test.json' if not exists for statement set begin insert into t1 select * from t2; insert into t2 select * from t3; end"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2915",
+        "sql": "compile plan 'file:///foo/bar/test.json' if not exists for statement set begin insert into t1 select * from t2; insert into t2 select * from t3; end"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2932",
+        "sql": "compile and execute plan './test.json' for insert into t1 select * from t2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2938",
+        "sql": "compile and execute plan './test.json' for statement set begin insert into t1 select * from t2; insert into t2 select * from t3; end"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2951",
+        "sql": "compile and execute plan 'file:///foo/bar/test.json' for insert into t1 select * from t2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2979",
+        "sql": "add Jar './test.sql'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2980",
+        "sql": "add JAR 'file:///path/to/\nwhatever'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2981",
+        "sql": "add JAR 'oss://path/helloworld.go'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2986",
+        "sql": "remove Jar './test.sql'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2987",
+        "sql": "remove JAR 'file:///path/to/\nwhatever'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2989",
+        "sql": "remove JAR 'oss://path/helloworld.go'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2994",
+        "sql": "show jars"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2999",
+        "sql": "SET"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3000",
+        "sql": "SET 'test-key' = 'test-value'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3001",
+        "sql": "RESET"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3002",
+        "sql": "RESET 'test-key'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3022",
+        "sql": "analyze table emps compute statistics"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3027",
+        "sql": "analyze table emps partition(x='ab') compute statistics"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3029",
+        "sql": "analyze table emps partition(x='ab', y='bc') compute statistics"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3033",
+        "sql": "analyze table emps compute statistics for columns a"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3035",
+        "sql": "analyze table emps compute statistics for columns a, b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3037",
+        "sql": "analyze table emps compute statistics for all columns"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3039",
+        "sql": "analyze table emps partition(x, y) compute statistics for all columns"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3041",
+        "sql": "analyze table emps partition(x='ab', y) compute statistics for all columns"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3044",
+        "sql": "analyze table emps partition(x, y='cd') compute statistics for all columns"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3060",
+        "sql": "EXPLAIN CREATE TABLE t AS SELECT * FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3066",
+        "sql": "EXPLAIN CREATE OR REPLACE TABLE t AS SELECT * FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3072",
+        "sql": "EXPLAIN REPLACE TABLE t AS SELECT * FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3078",
+        "sql": "CREATE TABLE t AS SELECT * FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3083",
+        "sql": "CREATE TABLE t WITH ('test' = 'zm') AS SELECT * FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3104",
+        "sql": "CREATE TABLE t (col1 string) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3110",
+        "sql": "CREATE TABLE t (watermark FOR col1 AS col1 - interval '3' second) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3116",
+        "sql": "CREATE TABLE t (PRIMARY KEY (col1) NOT ENFORCED) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3136",
+        "sql": "CREATE TABLE t DISTRIBUTED BY(col1) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3142",
+        "sql": "CREATE TABLE t PARTITIONED BY(col1) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3149",
+        "sql": "CREATE TABLE t (col1) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3175",
+        "sql": "REPLACE TABLE t (col1) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3186",
+        "sql": "REPLACE TABLE t AS SELECT * FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3189",
+        "sql": "REPLACE TABLE t WITH ('test' = 'zm') AS SELECT * FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3200",
+        "sql": "REPLACE TABLE t (col1 string) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3204",
+        "sql": "REPLACE TABLE t (watermark FOR ts AS ts - interval '3' second) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3223",
+        "sql": "REPLACE TABLE t PARTITIONED BY(col1) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3227",
+        "sql": "REPLACE TABLE t DISTRIBUTED BY(col1) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3234",
+        "sql": "CREATE OR REPLACE TABLE t AS SELECT * FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3238",
+        "sql": "CREATE OR REPLACE TABLE t WITH ('test' = 'zm') AS SELECT * FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3254",
+        "sql": "CREATE OR REPLACE TABLE t (col1 string) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3258",
+        "sql": "CREATE OR REPLACE TABLE t (watermark FOR ts AS ts - interval '3' second) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3277",
+        "sql": "CREATE OR REPLACE TABLE t PARTITIONED BY(col1) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3280",
+        "sql": "CREATE OR REPLACE TABLE t DISTRIBUTED BY(col1) WITH ('test' = 'zm') AS SELECT col1 FROM b"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3286",
+        "sql": "show jobs"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3291",
+        "sql": "STOP JOB 'myjob'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3292",
+        "sql": "STOP JOB 'myjob' WITH SAVEPOINT"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3293",
+        "sql": "STOP JOB 'myjob' WITH SAVEPOINT WITH DRAIN"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3302",
+        "sql": "DESCRIBE JOB 'myjob'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3303",
+        "sql": "DESC JOB 'myjob'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3308",
+        "sql": "truncate table t1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3343",
+        "sql": "show models"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3344",
+        "sql": "show models from db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3345",
+        "sql": "show models from catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3346",
+        "sql": "show models in db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3347",
+        "sql": "show models in catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3352",
+        "sql": "drop model m1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3353",
+        "sql": "drop model db1.m1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3354",
+        "sql": "drop model catalog1.db1.m1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3359",
+        "sql": "drop temporary model m1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3360",
+        "sql": "drop temporary model if exists m1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3365",
+        "sql": "drop model if exists catalog1.db1.m1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3421",
+        "sql": "create model m1\n INPUT(col1 INT, col2 STRING)\n OUTPUT(label DOUBLE)\n COMMENT 'model_comment'\n WITH (\n  'key1'='value1',\n  'key2'='value2'\n )\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3445",
+        "sql": "create model if not exists m1\n INPUT(col1 INT, col2 STRING)\n OUTPUT(label DOUBLE)\n COMMENT 'model_comment'\n WITH (\n  'key1'='value1',\n  'key2'='value2'\n )\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3469",
+        "sql": "create model m1\n WITH (\n  'key1'='value1',\n  'key2'='value2'\n ) as select f1, f2 from t1\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3487",
+        "sql": "create model if not exists m1\n WITH (\n  'key1'='value1',\n  'key2'='value2'\n ) as select f1, f2 from t1\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3559",
+        "sql": "select * from table(ml_predict(TABLE my_table, MODEL my_model))"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3567",
+        "sql": "select * from func(TABLE my_table, MODEL cat.db.my_model)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3575",
+        "sql": "select * from table(ml_predict(INPUT => TABLE my_table, model => MODEL my_model))"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3587",
+        "sql": "create connection conn1\n COMMENT 'connection_comment'\n WITH (\n  'type'='basic',\n  'url'='http://example.com',\n  'username'='user1',\n  'password'='pass1'\n )\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3608",
+        "sql": "create connection if not exists conn1\n WITH (\n  'type'='bearer',\n  'token'='my_token'\n )\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3623",
+        "sql": "create temporary connection conn1\n WITH (\n  'type'='oauth',\n  'client_id'='client1'\n )\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3652",
+        "sql": "create temporary system connection conn1\n WITH (\n  'type'='custom_type',\n  'api_key'='key123'\n )\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3667",
+        "sql": "create connection catalog1.db1.conn1\n WITH ('type'='basic', 'url'='http://example.com')\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3679",
+        "sql": "drop connection conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3680",
+        "sql": "drop connection db1.conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3681",
+        "sql": "drop connection catalog1.db1.conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3686",
+        "sql": "drop connection if exists catalog1.db1.conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3692",
+        "sql": "drop temporary connection conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3693",
+        "sql": "drop temporary connection if exists conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3699",
+        "sql": "drop temporary system connection conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3701",
+        "sql": "drop temporary system connection if exists conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3794",
+        "sql": "show connections"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3795",
+        "sql": "show connections from db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3796",
+        "sql": "show connections from catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3797",
+        "sql": "show connections in db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3798",
+        "sql": "show connections in catalog1.db1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3803",
+        "sql": "show connections like '%conn%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3804",
+        "sql": "show connections from db1 like 'my_%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3805",
+        "sql": "show connections not like 'temp_%'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3810",
+        "sql": "show create connection conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3811",
+        "sql": "show create connection catalog1.db1.conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3817",
+        "sql": "describe connection conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3818",
+        "sql": "describe connection catalog1.db1.conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3820",
+        "sql": "describe connection extended conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3822",
+        "sql": "desc connection conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3823",
+        "sql": "desc connection catalog1.db1.conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3825",
+        "sql": "desc connection extended catalog1.db1.conn1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3858",
+        "sql": "select*from unnest(x)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3859",
+        "sql": "select*from unnest(x) AS T"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3870",
+        "sql": "select * from dept, lateral unnest(dept.employees)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3872",
+        "sql": "select * from dept, unnest(dept.employees)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3904",
+        "sql": "CREATE TABLE t (\nv variant\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3907",
+        "sql": "CREATE TABLE t (\nv VARIANT NOT NULL\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3913",
+        "sql": "CREATE TABLE t (\nbm bitmap\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3916",
+        "sql": "CREATE TABLE t (\nbm bitmap NOT NULL\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:254",
+        "sql": "create database db1 comment 'test create database'"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:257",
+        "sql": "create database db1 comment 'test create database'with ( 'key1' = 'value1', 'key2.a' = 'value2.a')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:280",
+        "sql": "alter database db1 set ('key1' = 'value1','key2.a' = 'value2.a')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:741",
+        "sql": "alter table t1 add (\ncol_int int,\nlog_ts string comment 'log timestamp string' first,\nts AS to_timestamp(log_ts) after log_ts,\ncol_meta int metadata from 'mk1' virtual comment 'comment_str' after col_b,\nprimary key (id) not enforced,\nunique(a, b),\nwatermark for ts as ts - interval '3' second\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:876",
+        "sql": "alter table t1 modify (\ncol_int int,\nlog_ts string comment 'log timestamp string' first,\nts AS to_timestamp(log_ts) after log_ts,\ncol_meta int metadata from 'mk1' virtual comment 'comment_str' after col_b,\nprimary key (id) not enforced,\nunique(a, b),\nwatermark for ts as ts - interval '3' second\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1009",
+        "sql": "CREATE TABLE tbl1 (\n  a bigint,\n  h varchar, \n  g as 2 * (a + 1), \n  ts as toTimestamp(b, 'yyyy-MM-dd HH:mm:ss'), \n  b varchar,\n  proc as PROCTIME(), \n  meta STRING METADATA, \n  my_meta STRING METADATA FROM 'meta', \n  my_meta STRING METADATA FROM 'meta' VIRTUAL, \n  meta STRING METADATA VIRTUAL, \n  PRIMARY KEY (a, b)\n)\nPARTITIONED BY (a, h)\n  with (\n    'connector' = 'kafka', \n    'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1167",
+        "sql": "CREATE TABLE if not exists tbl1 (\n  a bigint,\n  h varchar, \n  PRIMARY KEY (a, b)\n)\nDISTRIBUTED BY HASH(a, h) INTO 6 BUCKETS  with (\n    'connector' = 'kafka', \n    'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1194",
+        "sql": "CREATE TABLE IF NOT EXISTS tbl1 (\n  a bigint,\n  h varchar, \n  PRIMARY KEY (a, b)\n)\nPARTITIONED BY (a, h)\n  with (\n    'connector' = 'kafka', \n    'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1221",
+        "sql": "CREATE TABLE tbl1 (\n  a bigint comment 'test column comment AAA.',\n  h varchar, \n  g as 2 * (a + 1), \n  ts as toTimestamp(b, 'yyyy-MM-dd HH:mm:ss'), \n  b varchar,\n  proc as PROCTIME(), \n  meta STRING METADATA COMMENT 'c1', \n  my_meta STRING METADATA FROM 'meta' COMMENT 'c2', \n  my_meta STRING METADATA FROM 'meta' VIRTUAL COMMENT 'c3', \n  meta STRING METADATA VIRTUAL COMMENT 'c4', \n  PRIMARY KEY (a, b)\n)\ncomment 'test table comment ABC.'\nPARTITIONED BY (a, h)\n  with (\n    'connector' = 'kafka', \n    'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1266",
+        "sql": "CREATE TABLE tbl1 (\n  a bigint comment 'test column comment AAA.',\n  h varchar, \n  g as 2 * (a + 1) comment 'test computed column.', \n  ts as toTimestamp(b, 'yyyy-MM-dd HH:mm:ss'), \n  b varchar,\n  proc as PROCTIME(), \n  PRIMARY KEY (a, b)\n)\ncomment 'test table comment ABC.'\nPARTITIONED BY (a, h)\n  with (\n    'connector' = 'kafka', \n    'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1374",
+        "sql": "CREATE TABLE tbl1 (\n  a bigint,\n  h varchar, \n  g as 2 * (a + 1),\n  ts as toTimestamp(b, 'yyyy-MM-dd HH:mm:ss'),\n  b varchar,\n  proc as PROCTIME(),\n  PRIMARY KEY (a, b) NOT ENFORCED\n) with (\n  'connector' = 'kafka',\n  'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1483",
+        "sql": "CREATE TABLE tbl1 (\n  a bigint primary key not enforced,\n  h varchar,\n  g as 2 * (a + 1),\n  ts as toTimestamp(b, 'yyyy-MM-dd HH:mm:ss'),\n  b varchar,\n  proc as PROCTIME()\n) with (\n  'connector' = 'kafka',\n  'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1526",
+        "sql": "CREATE TABLE tbl1 (\n  a bigint,\n  h varchar, \n  g as 2 * (a + 1),\n  ts as toTimestamp(b, 'yyyy-MM-dd HH:mm:ss'),\n  b varchar,\n  proc as PROCTIME(),\n  PRIMARY KEY (a, b) NOT ENFORCED,\n  UNIQUE (h, g)\n) with (\n  'connector' = 'kafka',\n  'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1561",
+        "sql": "CREATE TABLE tbl1 (\n  a bigint primary key enforced comment 'test column comment AAA.',\n  h varchar constraint ct1 unique not enforced,\n  g as 2 * (a + 1), \n  ts as toTimestamp(b, 'yyyy-MM-dd HH:mm:ss'),\n  b varchar constraint ct2 unique,\n  proc as PROCTIME(),\n  unique (g, ts) not enforced) with (\n    'connector' = 'kafka',\n    'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1611",
+        "sql": "CREATE TABLE tbl1 (\n  ts timestamp(3),\n  id varchar, \n  watermark FOR ts AS ts - interval '3' second\n)\n  with (\n    'connector' = 'kafka', \n    'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1636",
+        "sql": "CREATE TABLE tbl1 (\n  log_ts varchar,\n  ts as to_timestamp(log_ts), \n  WATERMARK FOR ts AS ts + interval '1' second\n)\n  with (\n    'connector' = 'kafka', \n    'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1661",
+        "sql": "CREATE TABLE tbl1 (\n  f1 row<q1 bigint, q2 row<t1 timestamp, t2 varchar>, q3 boolean>,\n  WATERMARK FOR f1.q2.t1 AS NOW()\n)\n  with (\n    'connector' = 'kafka', \n    'kafka.topic' = 'log.test'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1717",
+        "sql": "CREATE TABLE tbl1 (\n  a ARRAY<bigint>, \n  b MAP<int, varchar>,\n  c ROW<cc0 int, cc1 float, cc2 varchar>,\n  d MULTISET<varchar>,\n  PRIMARY KEY (a, b) \n) with (\n  'x' = 'y', \n  'asd' = 'data'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1745",
+        "sql": "CREATE TABLE tbl1 (\n  a ARRAY<ARRAY<bigint>>, \n  b MAP<MAP<int, varchar>, ARRAY<varchar>>,\n  c ROW<cc0 ARRAY<int>, cc1 float, cc2 varchar>,\n  d MULTISET<ARRAY<int>>,\n  PRIMARY KEY (a, b) \n) with (\n  'x' = 'y', \n  'asd' = 'data'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1773",
+        "sql": "create table t(\n  a catalog1.db1.MyType1,\n  b db2.MyType2\n) with (\n  'k1' = 'v1',\n  'k2' = 'v2'\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1830",
+        "sql": "CREATE TABLE sls_stream (\n  a bigint, \n  f as a + 1, \n  b varchar,\n  ts as toTimestamp(b, 'yyyy-MM-dd HH:mm:ss'), \n  proc as PROCTIME(),\n  c int,\n  PRIMARY KEY (a, b) \n) with (\n  'x' = 'y', \n  'asd' = 'data'\n)\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1852",
+        "sql": "create table source_table(\n  a int,\n  b bigint,\n  c string\n) with (\n  'a-b-c-d124' = 'ab',\n  'a.b.1.c' = 'aabb',\n  'a.b-c-connector.e-f.g' = 'ada',\n  'a.b-c-d.e-1231.g' = 'ada',\n  'a.b-c-d.*' = 'adad')\n"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1894",
+        "sql": "create table source_table(\n  a int,\n  b bigint,\n  c string\n)\nLIKE parent_table"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1953",
+        "sql": "create table source_table(\n  a int,\n  b bigint,\n  c string\n)\nLIKE parent_table (\n   INCLUDING ALL\n   OVERWRITING OPTIONS\n   EXCLUDING PARTITIONS\n   INCLUDING GENERATED\n   INCLUDING METADATA\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:1984",
+        "sql": "create table source_table(\n  a int,\n  b bigint,\n  c string\n)\nLIKE parent_table (\n   INCLUDING ALL\n   OVERWRITING OPTIONS\n   INCLUDING DISTRIBUTION\n   EXCLUDING PARTITIONS\n   INCLUDING GENERATED\n   INCLUDING METADATA\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2017",
+        "sql": "create table source_table(\n  a int,\n  b bigint,\n  c string\n)\nLIKE parent_table (\n   INCLUDING ALL\n   OVERWRITING OPTIONS\n   EXCLUDING DISTRIBUTION\n   INCLUDING PARTITIONS\n   INCLUDING GENERATED\n   INCLUDING METADATA\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2050",
+        "sql": "create TEMPORARY table source_table (\n   WATERMARK FOR ts AS ts - INTERVAL '5' SECOND\n) with (\n  'scan.startup.mode' = 'specific-offsets',\n  'scan.startup.specific-offsets' = 'partition:0,offset:1169129'\n) like t_order_course (\n   OVERWRITING  WATERMARKS\n   OVERWRITING OPTIONS\n   EXCLUDING CONSTRAINTS\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2080",
+        "sql": "create temporary table source_table(\n  a int,\n  b bigint,\n  c string\n) with (\n  'x' = 'y',\n  'abc' = 'def'\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2104",
+        "sql": "create table source_table with (\n  'x' = 'y',\n  'abc' = 'def'\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2116",
+        "sql": "create table source_table (\n  watermark FOR ts AS ts - interval '3' second\n) with (\n  'x' = 'y',\n  'abc' = 'def'\n)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2136",
+        "sql": "DROP table catalog1.db1.tbl1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2143",
+        "sql": "DROP table IF EXISTS catalog1.db1.tbl1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2150",
+        "sql": "DROP temporary table catalog1.db1.tbl1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2157",
+        "sql": "DROP temporary table IF EXISTS catalog1.db1.tbl1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2164",
+        "sql": "insert into emps partition (x='ab', y='bc') (x,y) select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2172",
+        "sql": "insert into emp\npartition(empno='1', job='job')\n(empno, ename, job, mgr, hiredate,\n  sal, comm, deptno, slacker)\nselect 'nom', 0, timestamp '1970-01-01 00:00:00',\n  1, 1, 1, false\nfrom (values 'a')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2188",
+        "sql": "insert into empnullables\npartition(ename='b')\n(empno, ename)\nselect 1 from (values 'a')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2241",
+        "sql": "INSERT OVERWRITE myDB.myTbl SELECT * FROM src"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2246",
+        "sql": "INSERT OVERWRITE myTbl PARTITION (p1='v1',p2='v2') SELECT * FROM src"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2292",
+        "sql": "create view v as select col1 from tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2312",
+        "sql": "create view v COMMENT 'this is a view' as select col1 from tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2324",
+        "sql": "create view v(col1, col2) as select col3, col4 from tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2343",
+        "sql": "create temporary view v as select col1 from tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2351",
+        "sql": "create temporary view if not exists v as select col1 from tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2362",
+        "sql": "create view if not exists v as select col1 from tbl"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2370",
+        "sql": "DROP VIEW IF EXISTS view_name"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2377",
+        "sql": "DROP TEMPORARY VIEW IF EXISTS view_name"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2463",
+        "sql": "CREATE TABLE tbl1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2469",
+        "sql": "CREATE VIEW v1 AS SELECT 1"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2750",
+        "sql": "explain select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2757",
+        "sql": "execute select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2764",
+        "sql": "explain plan for select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2771",
+        "sql": "explain changelog_mode select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2778",
+        "sql": "explain estimated_cost select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2785",
+        "sql": "explain estimated_cost select * from emps union all select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2827",
+        "sql": "explain json_execution_plan select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2834",
+        "sql": "explain plan_advice select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2841",
+        "sql": "explain changelog_mode,json_execution_plan,estimated_cost,plan_advice select * from emps"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:2960",
+        "sql": "explain plan for upsert into emps1 values (1, 2)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3371",
+        "sql": "alter model m1 set ('key1' = 'value1','key2' = 'value2')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3382",
+        "sql": "alter model if exists m1 set ('key1' = 'value1','key2' = 'value2')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3393",
+        "sql": "alter model m1 rename to m2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3400",
+        "sql": "alter model if exists m1 rename to m2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3407",
+        "sql": "alter model m1 reset ('key1', 'key2')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3414",
+        "sql": "alter model if exists m1 reset ('key1', 'key2')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3717",
+        "sql": "alter connection conn1 set ('password' = 'new_password','url' = 'http://new.com')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3729",
+        "sql": "alter connection catalog1.db1.conn1 set ('token' = 'new_token')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3739",
+        "sql": "alter connection conn1 rename to conn2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3746",
+        "sql": "alter connection catalog1.db1.conn1 rename to conn2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3753",
+        "sql": "alter connection conn1 reset ('password', 'url')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3760",
+        "sql": "alter connection catalog1.db1.conn1 reset ('token')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3767",
+        "sql": "alter connection if exists conn1 set ('password' = 'new_password','url' = 'http://new.com')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3779",
+        "sql": "alter connection if exists conn1 rename to conn2"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3786",
+        "sql": "alter connection if exists conn1 reset ('password', 'url')"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3863",
+        "sql": "select * from dept,\nunnest(dept.employees, dept.managers)"
+    },
+    {
+        "source": "FlinkSqlParserImplTest.java:3877",
+        "sql": "SELECT\n  item.name,\n  relations.*\nFROM dfs.tmp item\nJOIN (\n  SELECT * FROM UNNEST(item.related) i(rels)\n) relations\nON TRUE"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:366",
+        "sql": "alter materialized table mt1 add constraint ct1 primary key(a, b) not enforced"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:379",
+        "sql": "alter materialized table mt1 add new_column array<row(f0 int, f1 bigint)> comment 'new_column docs'"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:385",
+        "sql": "alter materialized table mt1 add (new_row row(f0 int, f1 bigint) comment 'new_column docs', f2 as new_row.f0 + 1)"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:393",
+        "sql": "alter materialized table mt1 add (new_row.f2 array<int>)"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:400",
+        "sql": "alter materialized table mt1 add (new_row.f2 array<int> after new_row.f0)"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:409",
+        "sql": "alter materialized table mt1 add new_column int not null"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:414",
+        "sql": "alter materialized table mt1 add new_column string comment 'new_column docs'"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:419",
+        "sql": "alter materialized table mt1 add new_column string comment 'new_column docs' first"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:424",
+        "sql": "alter materialized table mt1 add new_column string comment 'new_column docs' after id"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:430",
+        "sql": "alter materialized table mt1 add col_int as col_a - col_b after col_b"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:436",
+        "sql": "alter materialized table mt1 add col_int int metadata from 'mk1' virtual comment 'comment_metadata' after col_b"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:445",
+        "sql": "alter materialized table mt1 add watermark for ts as ts"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:450",
+        "sql": "alter materialized table mt1 add watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:455",
+        "sql": "alter materialized table default_database.mt1 add watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:460",
+        "sql": "alter materialized table default_catalog.default_database.mt1 add watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:475",
+        "sql": "alter materialized table mt1 modify new_column string comment 'new_column docs'"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:485",
+        "sql": "alter materialized table mt1 modify new_column string comment 'new_column docs' first"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:490",
+        "sql": "alter materialized table mt1 modify new_column string comment 'new_column docs' after id"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:496",
+        "sql": "alter materialized table mt1 modify new_column array<string not null> not null"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:503",
+        "sql": "alter materialized table mt1 modify col_int as col_a - col_b after col_b"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:509",
+        "sql": "alter materialized table mt1 modify col_int int metadata from 'mk1' virtual comment 'comment_metadata' after col_b"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:516",
+        "sql": "alter materialized table mt1 modify row_column.f0 int not null comment 'change nullability'"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:523",
+        "sql": "alter materialized table mt1 modify row_column.f0 int after row_column.f2"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:532",
+        "sql": "alter materialized table mt1 modify watermark for ts as ts"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:537",
+        "sql": "alter materialized table mt1 modify watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:542",
+        "sql": "alter  materialized table default_database.mt1 modify watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:547",
+        "sql": "alter materialized table default_catalog.default_database.mt1 modify watermark for ts as ts - interval '1' second"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:562",
+        "sql": "alter materialized table mt1 modify constraint ct1 primary key(a, b) not enforced"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:567",
+        "sql": "alter materialized table mt1 modify unique(a, b)"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:598",
+        "sql": "alter materialized table mt1 add distribution by hash(a) into 6 buckets"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:601",
+        "sql": "alter materialized table mt1 add distribution by hash(a, h) into 6 buckets"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:605",
+        "sql": "alter materialized table mt1 add distribution by range(a, h) into 6 buckets"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:612",
+        "sql": "alter materialized table mt1 add distribution by (a, h) into 6 buckets"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:615",
+        "sql": "alter materialized table mt1 add distribution by range(a, h)"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:618",
+        "sql": "alter materialized table mt1 add distribution by (a, h)"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:624",
+        "sql": "alter materialized table mt1 drop distribution"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:627",
+        "sql": "alter materialized table mt1 drop primary key"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:630",
+        "sql": "alter materialized table mt1 drop constraint pk_mt"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:633",
+        "sql": "alter materialized table mt1 drop watermark"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:636",
+        "sql": "alter materialized table mt1 drop c1"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:639",
+        "sql": "alter materialized table mt1 drop (c1, c2, c3)"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:746",
+        "sql": "show create materialized table mt1"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:747",
+        "sql": "show create materialized table db1.mt1"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:749",
+        "sql": "show create materialized table catalog1.db1.mt1"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:752",
+        "sql": "show create or alter materialized table mt1"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:754",
+        "sql": "show create or alter materialized table db1.mt1"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:756",
+        "sql": "show create or alter materialized table catalog1.db1.mt1"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:145",
+        "sql": "ALTER MATERIALIZED TABLE tb1 SUSPEND"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:177",
+        "sql": "ALTER MATERIALIZED TABLE tb1 RESUME\nWITH (\n  'group.id' = 'testGroup',\n  'topic' = 'test'\n)"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:191",
+        "sql": "ALTER MATERIALIZED TABLE tb1 RESUME"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:207",
+        "sql": "ALTER MATERIALIZED TABLE tbl1 REFRESH"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:211",
+        "sql": "ALTER MATERIALIZED TABLE tbl1 REFRESH \n PARTITION (part1 = 2023, part2 = 2024)"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:236",
+        "sql": "ALTER MATERIALIZED TABLE tbl1 SET REFRESH_MODE = FULL"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:240",
+        "sql": "ALTER MATERIALIZED TABLE tbl1 SET REFRESH_MODE = CONTINUOUS"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:264",
+        "sql": "ALTER MATERIALIZED TABLE tbl1 SET FRESHNESS = INTERVAL '1' DAY"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:284",
+        "sql": "ALTER MATERIALIZED TABLE tbl1 SET (\n  'key1' = 'val1',\n  'key2' = 'val2'\n)"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:296",
+        "sql": "ALTER MATERIALIZED TABLE tbl1 SET ()"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:314",
+        "sql": "ALTER MATERIALIZED TABLE tbl1 RESET ('key1', 'key2')"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:319",
+        "sql": "ALTER MATERIALIZED TABLE tbl1 RESET ()"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:334",
+        "sql": "ALTER MATERIALIZED TABLE tbl1 AS SELECT * FROM t"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:573",
+        "sql": "alter materialized table mt1 modify (\ncol_int int,\nlog_ts string comment 'log timestamp string' first,\nts AS to_timestamp(log_ts) after log_ts,\ncol_meta int metadata from 'mk1' virtual comment 'comment_str' after col_b,\nprimary key (id) not enforced,\nunique(a, b),\nwatermark for ts as ts - interval '3' second\n)"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:645",
+        "sql": "DROP MATERIALIZED TABLE tbl1"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:649",
+        "sql": "DROP MATERIALIZED TABLE IF EXISTS tbl1"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:670",
+        "sql": "create materialized table tbl1 start_mode = from_beginning as select * from t"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:676",
+        "sql": "create materialized table tbl1 start_mode = from_now as select * from t"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:682",
+        "sql": "create materialized table tbl1 start_mode = from_now(INTERVAL '1' HOUR) as select * from t"
+    },
+    {
+        "source": "MaterializedTableStatementParserTest.java:688",
+        "sql": "create materialized table tbl1 start_mode = from_timestamp(TIMESTAMP '2023-04-22 21:37:58') as select * from t"
+    }
+]

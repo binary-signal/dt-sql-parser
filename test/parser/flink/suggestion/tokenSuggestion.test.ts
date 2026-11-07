@@ -39,6 +39,12 @@ describe('Flink SQL Token Suggestion', () => {
             'VIEW',
             'DATABASE',
             'TABLE',
+            'MATERIALIZED',
+            'MATERIALIZED TABLE',
+            'OR',
+            'CONNECTION',
+            'SYSTEM',
+            'MODEL',
         ]);
     });
 
@@ -65,6 +71,13 @@ describe('Flink SQL Token Suggestion', () => {
             'DATABASES',
             'VIEWS',
             'JARS',
+            'MATERIALIZED',
+            'MATERIALIZED TABLES',
+            'PROCEDURES',
+            'MODELS',
+            'CONNECTIONS',
+            'PARTITIONS',
+            'JOBS',
         ]);
     });
 

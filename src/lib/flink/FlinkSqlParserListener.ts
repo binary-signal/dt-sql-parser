@@ -13,6 +13,7 @@ import { SingleStatementContext } from "./FlinkSqlParser.js";
 import { SqlStatementContext } from "./FlinkSqlParser.js";
 import { DdlStatementContext } from "./FlinkSqlParser.js";
 import { DmlStatementContext } from "./FlinkSqlParser.js";
+import { ExecuteQueryStatementContext } from "./FlinkSqlParser.js";
 import { DescribeStatementContext } from "./FlinkSqlParser.js";
 import { ExplainStatementContext } from "./FlinkSqlParser.js";
 import { ExplainDetailsContext } from "./FlinkSqlParser.js";
@@ -20,6 +21,13 @@ import { ExplainDetailContext } from "./FlinkSqlParser.js";
 import { UseStatementContext } from "./FlinkSqlParser.js";
 import { UseModuleStatementContext } from "./FlinkSqlParser.js";
 import { ShowStatementContext } from "./FlinkSqlParser.js";
+import { ShowLikePredicateContext } from "./FlinkSqlParser.js";
+import { PartitionSpecContext } from "./FlinkSqlParser.js";
+import { StopJobStatementContext } from "./FlinkSqlParser.js";
+import { TruncateTableStatementContext } from "./FlinkSqlParser.js";
+import { AnalyzeTableStatementContext } from "./FlinkSqlParser.js";
+import { CompilePlanStatementContext } from "./FlinkSqlParser.js";
+import { ExecutePlanStatementContext } from "./FlinkSqlParser.js";
 import { LoadStatementContext } from "./FlinkSqlParser.js";
 import { UnloadStatementContext } from "./FlinkSqlParser.js";
 import { SetStatementContext } from "./FlinkSqlParser.js";
@@ -30,6 +38,11 @@ import { DtFilePathContext } from "./FlinkSqlParser.js";
 import { CreateTableContext } from "./FlinkSqlParser.js";
 import { SimpleCreateTableContext } from "./FlinkSqlParser.js";
 import { CreateTableAsSelectContext } from "./FlinkSqlParser.js";
+import { TableElementContext } from "./FlinkSqlParser.js";
+import { TableColumnsOrIdentifiersContext } from "./FlinkSqlParser.js";
+import { PartitionedByClauseContext } from "./FlinkSqlParser.js";
+import { DistributionContext } from "./FlinkSqlParser.js";
+import { DistributionSpecContext } from "./FlinkSqlParser.js";
 import { ColumnOptionDefinitionContext } from "./FlinkSqlParser.js";
 import { PhysicalColumnDefinitionContext } from "./FlinkSqlParser.js";
 import { ColumnNameCreateContext } from "./FlinkSqlParser.js";
@@ -39,12 +52,14 @@ import { ColumnNamePathContext } from "./FlinkSqlParser.js";
 import { ColumnNamePathAllowEmptyContext } from "./FlinkSqlParser.js";
 import { ColumnNameListContext } from "./FlinkSqlParser.js";
 import { ColumnTypeContext } from "./FlinkSqlParser.js";
+import { NestedColumnTypeContext } from "./FlinkSqlParser.js";
 import { LengthOneDimensionContext } from "./FlinkSqlParser.js";
 import { LengthTwoOptionalDimensionContext } from "./FlinkSqlParser.js";
 import { LengthTwoStringDimensionContext } from "./FlinkSqlParser.js";
 import { LengthOneTypeDimensionContext } from "./FlinkSqlParser.js";
 import { MapTypeDimensionContext } from "./FlinkSqlParser.js";
 import { RowTypeDimensionContext } from "./FlinkSqlParser.js";
+import { RowTypeFieldContext } from "./FlinkSqlParser.js";
 import { ColumnConstraintContext } from "./FlinkSqlParser.js";
 import { MetadataColumnDefinitionContext } from "./FlinkSqlParser.js";
 import { ComputedColumnDefinitionContext } from "./FlinkSqlParser.js";
@@ -59,15 +74,30 @@ import { LikeDefinitionContext } from "./FlinkSqlParser.js";
 import { LikeOptionContext } from "./FlinkSqlParser.js";
 import { CreateCatalogContext } from "./FlinkSqlParser.js";
 import { CreateDatabaseContext } from "./FlinkSqlParser.js";
+import { CreateModelContext } from "./FlinkSqlParser.js";
+import { CreateConnectionContext } from "./FlinkSqlParser.js";
+import { CreateMaterializedTableContext } from "./FlinkSqlParser.js";
+import { MaterializedTableStartModeContext } from "./FlinkSqlParser.js";
 import { CreateViewContext } from "./FlinkSqlParser.js";
 import { CreateFunctionContext } from "./FlinkSqlParser.js";
 import { UsingClauseContext } from "./FlinkSqlParser.js";
+import { ResourceInfoContext } from "./FlinkSqlParser.js";
 import { AlterTableContext } from "./FlinkSqlParser.js";
+import { AlterTableAddContext } from "./FlinkSqlParser.js";
+import { AlterTableModifyContext } from "./FlinkSqlParser.js";
+import { AlterTableSchemaChangeContext } from "./FlinkSqlParser.js";
+import { ColumnPositionContext } from "./FlinkSqlParser.js";
+import { AlterTableDropContext } from "./FlinkSqlParser.js";
+import { PropertyKeyListContext } from "./FlinkSqlParser.js";
+import { AlterMaterializedTableContext } from "./FlinkSqlParser.js";
+import { AlterModelContext } from "./FlinkSqlParser.js";
+import { AlterConnectionContext } from "./FlinkSqlParser.js";
 import { RenameDefinitionContext } from "./FlinkSqlParser.js";
 import { SetKeyValueDefinitionContext } from "./FlinkSqlParser.js";
 import { AddConstraintContext } from "./FlinkSqlParser.js";
 import { DropConstraintContext } from "./FlinkSqlParser.js";
 import { AddUniqueContext } from "./FlinkSqlParser.js";
+import { AlterCatalogContext } from "./FlinkSqlParser.js";
 import { AlterViewContext } from "./FlinkSqlParser.js";
 import { AlterDatabaseContext } from "./FlinkSqlParser.js";
 import { AlterFunctionContext } from "./FlinkSqlParser.js";
@@ -76,8 +106,13 @@ import { DropTableContext } from "./FlinkSqlParser.js";
 import { DropDatabaseContext } from "./FlinkSqlParser.js";
 import { DropViewContext } from "./FlinkSqlParser.js";
 import { DropFunctionContext } from "./FlinkSqlParser.js";
+import { DropModelContext } from "./FlinkSqlParser.js";
+import { DropConnectionContext } from "./FlinkSqlParser.js";
+import { DropMaterializedTableContext } from "./FlinkSqlParser.js";
 import { InsertStatementContext } from "./FlinkSqlParser.js";
 import { InsertSimpleStatementContext } from "./FlinkSqlParser.js";
+import { InsertExtendedColumnsContext } from "./FlinkSqlParser.js";
+import { OnConflictClauseContext } from "./FlinkSqlParser.js";
 import { ValuesDefinitionContext } from "./FlinkSqlParser.js";
 import { ValuesRowDefinitionContext } from "./FlinkSqlParser.js";
 import { ValueDefinitionContext } from "./FlinkSqlParser.js";
@@ -103,6 +138,7 @@ import { TableExpressionContext } from "./FlinkSqlParser.js";
 import { TableReferenceContext } from "./FlinkSqlParser.js";
 import { TablePrimaryContext } from "./FlinkSqlParser.js";
 import { AtomFunctionTableContext } from "./FlinkSqlParser.js";
+import { TableFunctionCallContext } from "./FlinkSqlParser.js";
 import { AtomExpressionTableContext } from "./FlinkSqlParser.js";
 import { SystemTimePeriodContext } from "./FlinkSqlParser.js";
 import { InlineDataValueClauseContext } from "./FlinkSqlParser.js";
@@ -290,6 +326,16 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      */
     exitDmlStatement?: (ctx: DmlStatementContext) => void;
     /**
+     * Enter a parse tree produced by `FlinkSqlParser.executeQueryStatement`.
+     * @param ctx the parse tree
+     */
+    enterExecuteQueryStatement?: (ctx: ExecuteQueryStatementContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.executeQueryStatement`.
+     * @param ctx the parse tree
+     */
+    exitExecuteQueryStatement?: (ctx: ExecuteQueryStatementContext) => void;
+    /**
      * Enter a parse tree produced by `FlinkSqlParser.describeStatement`.
      * @param ctx the parse tree
      */
@@ -359,6 +405,76 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitShowStatement?: (ctx: ShowStatementContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.showLikePredicate`.
+     * @param ctx the parse tree
+     */
+    enterShowLikePredicate?: (ctx: ShowLikePredicateContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.showLikePredicate`.
+     * @param ctx the parse tree
+     */
+    exitShowLikePredicate?: (ctx: ShowLikePredicateContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.partitionSpec`.
+     * @param ctx the parse tree
+     */
+    enterPartitionSpec?: (ctx: PartitionSpecContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.partitionSpec`.
+     * @param ctx the parse tree
+     */
+    exitPartitionSpec?: (ctx: PartitionSpecContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.stopJobStatement`.
+     * @param ctx the parse tree
+     */
+    enterStopJobStatement?: (ctx: StopJobStatementContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.stopJobStatement`.
+     * @param ctx the parse tree
+     */
+    exitStopJobStatement?: (ctx: StopJobStatementContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.truncateTableStatement`.
+     * @param ctx the parse tree
+     */
+    enterTruncateTableStatement?: (ctx: TruncateTableStatementContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.truncateTableStatement`.
+     * @param ctx the parse tree
+     */
+    exitTruncateTableStatement?: (ctx: TruncateTableStatementContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.analyzeTableStatement`.
+     * @param ctx the parse tree
+     */
+    enterAnalyzeTableStatement?: (ctx: AnalyzeTableStatementContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.analyzeTableStatement`.
+     * @param ctx the parse tree
+     */
+    exitAnalyzeTableStatement?: (ctx: AnalyzeTableStatementContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.compilePlanStatement`.
+     * @param ctx the parse tree
+     */
+    enterCompilePlanStatement?: (ctx: CompilePlanStatementContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.compilePlanStatement`.
+     * @param ctx the parse tree
+     */
+    exitCompilePlanStatement?: (ctx: CompilePlanStatementContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.executePlanStatement`.
+     * @param ctx the parse tree
+     */
+    enterExecutePlanStatement?: (ctx: ExecutePlanStatementContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.executePlanStatement`.
+     * @param ctx the parse tree
+     */
+    exitExecutePlanStatement?: (ctx: ExecutePlanStatementContext) => void;
     /**
      * Enter a parse tree produced by `FlinkSqlParser.loadStatement`.
      * @param ctx the parse tree
@@ -460,6 +576,56 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      */
     exitCreateTableAsSelect?: (ctx: CreateTableAsSelectContext) => void;
     /**
+     * Enter a parse tree produced by `FlinkSqlParser.tableElement`.
+     * @param ctx the parse tree
+     */
+    enterTableElement?: (ctx: TableElementContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.tableElement`.
+     * @param ctx the parse tree
+     */
+    exitTableElement?: (ctx: TableElementContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.tableColumnsOrIdentifiers`.
+     * @param ctx the parse tree
+     */
+    enterTableColumnsOrIdentifiers?: (ctx: TableColumnsOrIdentifiersContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.tableColumnsOrIdentifiers`.
+     * @param ctx the parse tree
+     */
+    exitTableColumnsOrIdentifiers?: (ctx: TableColumnsOrIdentifiersContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.partitionedByClause`.
+     * @param ctx the parse tree
+     */
+    enterPartitionedByClause?: (ctx: PartitionedByClauseContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.partitionedByClause`.
+     * @param ctx the parse tree
+     */
+    exitPartitionedByClause?: (ctx: PartitionedByClauseContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.distribution`.
+     * @param ctx the parse tree
+     */
+    enterDistribution?: (ctx: DistributionContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.distribution`.
+     * @param ctx the parse tree
+     */
+    exitDistribution?: (ctx: DistributionContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.distributionSpec`.
+     * @param ctx the parse tree
+     */
+    enterDistributionSpec?: (ctx: DistributionSpecContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.distributionSpec`.
+     * @param ctx the parse tree
+     */
+    exitDistributionSpec?: (ctx: DistributionSpecContext) => void;
+    /**
      * Enter a parse tree produced by `FlinkSqlParser.columnOptionDefinition`.
      * @param ctx the parse tree
      */
@@ -550,6 +716,16 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      */
     exitColumnType?: (ctx: ColumnTypeContext) => void;
     /**
+     * Enter a parse tree produced by `FlinkSqlParser.nestedColumnType`.
+     * @param ctx the parse tree
+     */
+    enterNestedColumnType?: (ctx: NestedColumnTypeContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.nestedColumnType`.
+     * @param ctx the parse tree
+     */
+    exitNestedColumnType?: (ctx: NestedColumnTypeContext) => void;
+    /**
      * Enter a parse tree produced by `FlinkSqlParser.lengthOneDimension`.
      * @param ctx the parse tree
      */
@@ -609,6 +785,16 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitRowTypeDimension?: (ctx: RowTypeDimensionContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.rowTypeField`.
+     * @param ctx the parse tree
+     */
+    enterRowTypeField?: (ctx: RowTypeFieldContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.rowTypeField`.
+     * @param ctx the parse tree
+     */
+    exitRowTypeField?: (ctx: RowTypeFieldContext) => void;
     /**
      * Enter a parse tree produced by `FlinkSqlParser.columnConstraint`.
      * @param ctx the parse tree
@@ -754,6 +940,46 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      */
     exitCreateDatabase?: (ctx: CreateDatabaseContext) => void;
     /**
+     * Enter a parse tree produced by `FlinkSqlParser.createModel`.
+     * @param ctx the parse tree
+     */
+    enterCreateModel?: (ctx: CreateModelContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.createModel`.
+     * @param ctx the parse tree
+     */
+    exitCreateModel?: (ctx: CreateModelContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.createConnection`.
+     * @param ctx the parse tree
+     */
+    enterCreateConnection?: (ctx: CreateConnectionContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.createConnection`.
+     * @param ctx the parse tree
+     */
+    exitCreateConnection?: (ctx: CreateConnectionContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.createMaterializedTable`.
+     * @param ctx the parse tree
+     */
+    enterCreateMaterializedTable?: (ctx: CreateMaterializedTableContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.createMaterializedTable`.
+     * @param ctx the parse tree
+     */
+    exitCreateMaterializedTable?: (ctx: CreateMaterializedTableContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.materializedTableStartMode`.
+     * @param ctx the parse tree
+     */
+    enterMaterializedTableStartMode?: (ctx: MaterializedTableStartModeContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.materializedTableStartMode`.
+     * @param ctx the parse tree
+     */
+    exitMaterializedTableStartMode?: (ctx: MaterializedTableStartModeContext) => void;
+    /**
      * Enter a parse tree produced by `FlinkSqlParser.createView`.
      * @param ctx the parse tree
      */
@@ -784,6 +1010,16 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      */
     exitUsingClause?: (ctx: UsingClauseContext) => void;
     /**
+     * Enter a parse tree produced by `FlinkSqlParser.resourceInfo`.
+     * @param ctx the parse tree
+     */
+    enterResourceInfo?: (ctx: ResourceInfoContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.resourceInfo`.
+     * @param ctx the parse tree
+     */
+    exitResourceInfo?: (ctx: ResourceInfoContext) => void;
+    /**
      * Enter a parse tree produced by `FlinkSqlParser.alterTable`.
      * @param ctx the parse tree
      */
@@ -793,6 +1029,96 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitAlterTable?: (ctx: AlterTableContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.alterTableAdd`.
+     * @param ctx the parse tree
+     */
+    enterAlterTableAdd?: (ctx: AlterTableAddContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.alterTableAdd`.
+     * @param ctx the parse tree
+     */
+    exitAlterTableAdd?: (ctx: AlterTableAddContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.alterTableModify`.
+     * @param ctx the parse tree
+     */
+    enterAlterTableModify?: (ctx: AlterTableModifyContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.alterTableModify`.
+     * @param ctx the parse tree
+     */
+    exitAlterTableModify?: (ctx: AlterTableModifyContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.alterTableSchemaChange`.
+     * @param ctx the parse tree
+     */
+    enterAlterTableSchemaChange?: (ctx: AlterTableSchemaChangeContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.alterTableSchemaChange`.
+     * @param ctx the parse tree
+     */
+    exitAlterTableSchemaChange?: (ctx: AlterTableSchemaChangeContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.columnPosition`.
+     * @param ctx the parse tree
+     */
+    enterColumnPosition?: (ctx: ColumnPositionContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.columnPosition`.
+     * @param ctx the parse tree
+     */
+    exitColumnPosition?: (ctx: ColumnPositionContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.alterTableDrop`.
+     * @param ctx the parse tree
+     */
+    enterAlterTableDrop?: (ctx: AlterTableDropContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.alterTableDrop`.
+     * @param ctx the parse tree
+     */
+    exitAlterTableDrop?: (ctx: AlterTableDropContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.propertyKeyList`.
+     * @param ctx the parse tree
+     */
+    enterPropertyKeyList?: (ctx: PropertyKeyListContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.propertyKeyList`.
+     * @param ctx the parse tree
+     */
+    exitPropertyKeyList?: (ctx: PropertyKeyListContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.alterMaterializedTable`.
+     * @param ctx the parse tree
+     */
+    enterAlterMaterializedTable?: (ctx: AlterMaterializedTableContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.alterMaterializedTable`.
+     * @param ctx the parse tree
+     */
+    exitAlterMaterializedTable?: (ctx: AlterMaterializedTableContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.alterModel`.
+     * @param ctx the parse tree
+     */
+    enterAlterModel?: (ctx: AlterModelContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.alterModel`.
+     * @param ctx the parse tree
+     */
+    exitAlterModel?: (ctx: AlterModelContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.alterConnection`.
+     * @param ctx the parse tree
+     */
+    enterAlterConnection?: (ctx: AlterConnectionContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.alterConnection`.
+     * @param ctx the parse tree
+     */
+    exitAlterConnection?: (ctx: AlterConnectionContext) => void;
     /**
      * Enter a parse tree produced by `FlinkSqlParser.renameDefinition`.
      * @param ctx the parse tree
@@ -843,6 +1169,16 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitAddUnique?: (ctx: AddUniqueContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.alterCatalog`.
+     * @param ctx the parse tree
+     */
+    enterAlterCatalog?: (ctx: AlterCatalogContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.alterCatalog`.
+     * @param ctx the parse tree
+     */
+    exitAlterCatalog?: (ctx: AlterCatalogContext) => void;
     /**
      * Enter a parse tree produced by `FlinkSqlParser.alterView`.
      * @param ctx the parse tree
@@ -924,6 +1260,36 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      */
     exitDropFunction?: (ctx: DropFunctionContext) => void;
     /**
+     * Enter a parse tree produced by `FlinkSqlParser.dropModel`.
+     * @param ctx the parse tree
+     */
+    enterDropModel?: (ctx: DropModelContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.dropModel`.
+     * @param ctx the parse tree
+     */
+    exitDropModel?: (ctx: DropModelContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.dropConnection`.
+     * @param ctx the parse tree
+     */
+    enterDropConnection?: (ctx: DropConnectionContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.dropConnection`.
+     * @param ctx the parse tree
+     */
+    exitDropConnection?: (ctx: DropConnectionContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.dropMaterializedTable`.
+     * @param ctx the parse tree
+     */
+    enterDropMaterializedTable?: (ctx: DropMaterializedTableContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.dropMaterializedTable`.
+     * @param ctx the parse tree
+     */
+    exitDropMaterializedTable?: (ctx: DropMaterializedTableContext) => void;
+    /**
      * Enter a parse tree produced by `FlinkSqlParser.insertStatement`.
      * @param ctx the parse tree
      */
@@ -943,6 +1309,26 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitInsertSimpleStatement?: (ctx: InsertSimpleStatementContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.insertExtendedColumns`.
+     * @param ctx the parse tree
+     */
+    enterInsertExtendedColumns?: (ctx: InsertExtendedColumnsContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.insertExtendedColumns`.
+     * @param ctx the parse tree
+     */
+    exitInsertExtendedColumns?: (ctx: InsertExtendedColumnsContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.onConflictClause`.
+     * @param ctx the parse tree
+     */
+    enterOnConflictClause?: (ctx: OnConflictClauseContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.onConflictClause`.
+     * @param ctx the parse tree
+     */
+    exitOnConflictClause?: (ctx: OnConflictClauseContext) => void;
     /**
      * Enter a parse tree produced by `FlinkSqlParser.valuesDefinition`.
      * @param ctx the parse tree
@@ -1193,6 +1579,16 @@ export class FlinkSqlParserListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitAtomFunctionTable?: (ctx: AtomFunctionTableContext) => void;
+    /**
+     * Enter a parse tree produced by `FlinkSqlParser.tableFunctionCall`.
+     * @param ctx the parse tree
+     */
+    enterTableFunctionCall?: (ctx: TableFunctionCallContext) => void;
+    /**
+     * Exit a parse tree produced by `FlinkSqlParser.tableFunctionCall`.
+     * @param ctx the parse tree
+     */
+    exitTableFunctionCall?: (ctx: TableFunctionCallContext) => void;
     /**
      * Enter a parse tree produced by `FlinkSqlParser.atomExpressionTable`.
      * @param ctx the parse tree

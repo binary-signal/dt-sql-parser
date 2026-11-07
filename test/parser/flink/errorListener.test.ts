@@ -30,7 +30,7 @@ describe('FlinkSQL validate invalid sql and test msg', () => {
         const errors = flink.validate(sql2);
         expect(errors.length).toBe(1);
         expect(errors[0].message).toBe(
-            'Statement is incomplete, expecting an existing table or an existing view or a keyword'
+            'Statement is incomplete, expecting an existing table or an existing view or an existing function or a keyword'
         );
     });
 
@@ -90,7 +90,7 @@ describe('FlinkSQL validate invalid sql and test msg', () => {
         const errors = flink.validate(sql2);
         expect(errors.length).toBe(1);
         expect(errors[0].message).toBe(
-            '语句不完整，期望一个存在的table或者一个存在的view或者一个关键字'
+            '语句不完整，期望一个存在的table或者一个存在的view或者一个存在的function或者一个关键字'
         );
     });
 

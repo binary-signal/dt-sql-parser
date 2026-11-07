@@ -36,6 +36,13 @@ sqlStatement
     | resetStatement
     | jarStatement
     | dtAddStatement
+    | stopJobStatement
+    | truncateTableStatement
+    | analyzeTableStatement
+    | compilePlanStatement
+    | executePlanStatement
+    | KW_BEGIN KW_STATEMENT KW_SET
+    | KW_END
     ;
 
 ddlStatement
@@ -44,7 +51,14 @@ ddlStatement
     | createView
     | createFunction
     | createCatalog
+    | createModel
+    | createConnection
+    | createMaterializedTable
+    | alterCatalog
     | alterTable
+    | alterMaterializedTable
+    | alterModel
+    | alterConnection
     | alterView
     | alterDatabase
     | alterFunction
@@ -53,16 +67,29 @@ ddlStatement
     | dropDatabase
     | dropView
     | dropFunction
+    | dropModel
+    | dropConnection
+    | dropMaterializedTable
     ;
 
 dmlStatement
     : queryStatement
     | insertStatement
+    | executeQueryStatement
+    ;
+
+executeQueryStatement
+    : KW_EXECUTE queryStatement
     ;
 
 // some statement
 describeStatement
-    : (KW_DESCRIBE | KW_DESC) tablePath
+    : (KW_DESCRIBE | KW_DESC) KW_CATALOG KW_EXTENDED? catalogPath
+    | (KW_DESCRIBE | KW_DESC) KW_DATABASE KW_EXTENDED? databasePath
+    | (KW_DESCRIBE | KW_DESC) KW_FUNCTION KW_EXTENDED? functionName
+    | (KW_DESCRIBE | KW_DESC) (KW_MODEL | KW_CONNECTION) KW_EXTENDED? uid
+    | (KW_DESCRIBE | KW_DESC) KW_JOB STRING_LITERAL
+    | (KW_DESCRIBE | KW_DESC) KW_EXTENDED? tablePath
     ;
 
 explainStatement
@@ -70,6 +97,7 @@ explainStatement
         dmlStatement
         | insertSimpleStatement
         | insertMulStatement
+        | createTable
     )
     ;
 
@@ -81,6 +109,7 @@ explainDetail
     : KW_CHANGELOG_MODE
     | KW_JSON_EXECUTION_PLAN
     | KW_ESTIMATED_COST
+    | KW_PLAN_ADVICE
     ;
 
 useStatement
@@ -94,13 +123,56 @@ useModuleStatement
     ;
 
 showStatement
-    : KW_SHOW (KW_CATALOGS | KW_DATABASES | KW_VIEWS | KW_JARS)
+    : KW_SHOW KW_CATALOGS showLikePredicate?
     | KW_SHOW KW_CURRENT (KW_CATALOG | KW_DATABASE)
-    | KW_SHOW KW_TABLES (( KW_FROM | KW_IN) databasePath)? likePredicate?
-    | KW_SHOW KW_COLUMNS ( KW_FROM | KW_IN) (viewPath | tablePath) likePredicate?
-    | KW_SHOW KW_CREATE (KW_TABLE tablePath | KW_VIEW viewPath)
-    | KW_SHOW KW_USER? KW_FUNCTIONS
+    | KW_SHOW KW_DATABASES ((KW_FROM | KW_IN) catalogPath)? showLikePredicate?
+    | KW_SHOW (KW_TABLES | KW_VIEWS | KW_MATERIALIZED KW_TABLES) ((KW_FROM | KW_IN) databasePath)? showLikePredicate?
+    | KW_SHOW KW_COLUMNS (KW_FROM | KW_IN) (viewPath | tablePath) showLikePredicate?
+    | KW_SHOW KW_CREATE (
+        KW_TABLE tablePath
+        | KW_VIEW viewPath
+        | KW_CATALOG catalogPath
+        | (KW_MODEL | KW_CONNECTION) uid
+        | (KW_OR KW_ALTER)? KW_MATERIALIZED KW_TABLE tablePath
+    )
+    | KW_SHOW KW_USER? KW_FUNCTIONS ((KW_FROM | KW_IN) databasePath)? showLikePredicate?
+    | KW_SHOW (KW_PROCEDURES | KW_MODELS | KW_CONNECTIONS) ((KW_FROM | KW_IN) databasePath)? showLikePredicate?
+    | KW_SHOW KW_PARTITIONS tablePath partitionSpec?
     | KW_SHOW KW_FULL? KW_MODULES
+    | KW_SHOW (KW_JOBS | KW_JARS)
+    ;
+
+showLikePredicate
+    : KW_NOT? (KW_LIKE | KW_ILIKE) STRING_LITERAL
+    ;
+
+partitionSpec
+    : KW_PARTITION tablePropertyList
+    ;
+
+stopJobStatement
+    : KW_STOP KW_JOB STRING_LITERAL (KW_WITH KW_SAVEPOINT)? (KW_WITH KW_DRAIN)?
+    ;
+
+truncateTableStatement
+    : KW_TRUNCATE KW_TABLE tablePath
+    ;
+
+analyzeTableStatement
+    : KW_ANALYZE KW_TABLE tablePath partitionSpec? KW_COMPUTE KW_STATISTICS (
+        KW_FOR (KW_COLUMNS columnName (COMMA columnName)* | KW_ALL KW_COLUMNS)
+    )?
+    ;
+
+compilePlanStatement
+    : KW_COMPILE (KW_AND KW_EXECUTE)? KW_PLAN STRING_LITERAL ifNotExists? KW_FOR (
+        insertMulStatement
+        | insertSimpleStatement
+    )
+    ;
+
+executePlanStatement
+    : KW_EXECUTE KW_PLAN STRING_LITERAL
     ;
 
 loadStatement
@@ -150,19 +222,52 @@ createTable
     ;
 
 simpleCreateTable
-    : KW_CREATE KW_TEMPORARY? KW_TABLE ifNotExists? tablePathCreate LR_BRACKET columnOptionDefinition (
-        COMMA columnOptionDefinition
-    )* (COMMA watermarkDefinition)? (COMMA tableConstraint)? (COMMA selfDefinitionClause)? RR_BRACKET (
-        KW_COMMENT comment=STRING_LITERAL
-    )? (KW_PARTITIONED KW_BY LR_BRACKET transform (COMMA transform)* RR_BRACKET)? withOption likeDefinition?
+    : KW_CREATE (KW_OR KW_REPLACE)? KW_TEMPORARY? KW_TABLE ifNotExists? tablePathCreate LR_BRACKET tableElement (
+        COMMA tableElement
+    )* RR_BRACKET (KW_COMMENT comment=STRING_LITERAL)? distribution? partitionedByClause? withOption? (
+        likeDefinition
+        | KW_AS queryStatement
+    )?
     ;
 
 /*
- * 详见 https://nightlies.apache.org/flink/flink-docs-release-1.16/docs/dev/table/sql/create/#as-select_statement
- * CTAS 不支持指定显示指定列，不支持创建分区表，临时表
+ * CTAS / RTAS (CREATE OR REPLACE TABLE ... AS, REPLACE TABLE ... AS) and tables without a column list,
+ * see https://nightlies.apache.org/flink/flink-docs-release-2.3/docs/dev/table/sql/create/#as-select_statement
  */
 createTableAsSelect
-    : KW_CREATE KW_TABLE ifNotExists? tablePathCreate withOption (KW_AS queryStatement)?
+    : (KW_CREATE (KW_OR KW_REPLACE)? | KW_REPLACE) KW_TEMPORARY? KW_TABLE ifNotExists? tablePathCreate (
+        LR_BRACKET tableColumnsOrIdentifiers RR_BRACKET
+    )? (KW_COMMENT comment=STRING_LITERAL)? distribution? partitionedByClause? withOption? (
+        KW_AS queryStatement
+    )?
+    ;
+
+// Column definitions, watermark and constraints may come in any order
+tableElement
+    : columnOptionDefinition
+    | watermarkDefinition
+    | tableConstraint
+    | selfDefinitionClause
+    ;
+
+tableColumnsOrIdentifiers
+    : tableElement (COMMA tableElement)*
+    | columnNameCreate (COMMA columnNameCreate)*
+    ;
+
+partitionedByClause
+    : KW_PARTITIONED KW_BY LR_BRACKET transform (COMMA transform)* RR_BRACKET
+    ;
+
+distribution
+    : KW_DISTRIBUTED distributionSpec
+    ;
+
+distributionSpec
+    : KW_BY (KW_HASH | KW_RANGE)? LR_BRACKET columnName (COMMA columnName)* RR_BRACKET (
+        KW_INTO DIG_LITERAL KW_BUCKETS
+    )?
+    | KW_INTO DIG_LITERAL KW_BUCKETS
     ;
 
 columnOptionDefinition
@@ -172,7 +277,7 @@ columnOptionDefinition
     ;
 
 physicalColumnDefinition
-    : columnNameCreate columnType columnConstraint? (KW_COMMENT comment=STRING_LITERAL)?
+    : columnNameCreate columnType columnConstraint* (KW_COMMENT comment=STRING_LITERAL)?
     ;
 
 columnNameCreate
@@ -221,11 +326,23 @@ columnType
         | KW_DATETIME
     ) lengthOneDimension?
     | colType=KW_TIMESTAMP lengthOneDimension? ((KW_WITHOUT | KW_WITH) KW_LOCAL? KW_TIME KW_ZONE)?
-    | colType=(KW_DECIMAL | KW_DEC | KW_NUMERIC | KW_FLOAT | KW_DOUBLE) lengthTwoOptionalDimension?
+    | colType=(KW_DECIMAL | KW_DEC | KW_NUMERIC | KW_FLOAT | KW_DOUBLE) KW_PRECISION? lengthTwoOptionalDimension?
     | colType=(KW_ARRAY | KW_MULTISET) lengthOneTypeDimension?
     | colType=KW_MAP mapTypeDimension?
     | colType=KW_ROW rowTypeDimension?
     | colType=KW_RAW lengthTwoStringDimension?
+    | colType=(KW_VARIANT | KW_BITMAP)
+    | colType=KW_INTERVAL timeIntervalUnit lengthOneDimension? (
+        KW_TO timeIntervalUnit lengthOneDimension?
+    )?
+    | colType=KW_STRUCTURED LESS_SYMBOL STRING_LITERAL (COMMA rowTypeField)* GREATER_SYMBOL
+    | userDefinedType=uid
+    // `INT ARRAY` / `INT MULTISET` collection suffixes
+    | columnType (KW_ARRAY | KW_MULTISET)
+    ;
+
+nestedColumnType
+    : columnType (KW_NOT? KW_NULL)?
     ;
 
 lengthOneDimension
@@ -241,25 +358,31 @@ lengthTwoStringDimension
     ;
 
 lengthOneTypeDimension
-    : LESS_SYMBOL columnType GREATER_SYMBOL
+    : LESS_SYMBOL nestedColumnType GREATER_SYMBOL
     ;
 
 mapTypeDimension
-    : LESS_SYMBOL columnType (COMMA columnType) GREATER_SYMBOL
+    : LESS_SYMBOL nestedColumnType (COMMA nestedColumnType) GREATER_SYMBOL
     ;
 
 rowTypeDimension
-    : LESS_SYMBOL columnName columnType (COMMA columnName columnType)* GREATER_SYMBOL
-    | LR_BRACKET columnName columnType (COMMA columnName columnType)* RR_BRACKET
+    : LESS_SYMBOL rowTypeField (COMMA rowTypeField)* GREATER_SYMBOL
+    | LR_BRACKET rowTypeField (COMMA rowTypeField)* RR_BRACKET
+    ;
+
+rowTypeField
+    : columnName nestedColumnType (KW_COMMENT? STRING_LITERAL)?
     ;
 
 columnConstraint
-    : (KW_CONSTRAINT constraintName)? KW_PRIMARY KW_KEY (KW_NOT KW_ENFORCED)?
+    : (KW_CONSTRAINT constraintName)? (KW_PRIMARY KW_KEY | KW_UNIQUE) (KW_NOT? KW_ENFORCED)?
     | KW_NOT? KW_NULL
     ;
 
 metadataColumnDefinition
-    : columnNameCreate columnType KW_METADATA (KW_FROM STRING_LITERAL)? KW_VIRTUAL?
+    : columnNameCreate columnType KW_METADATA (KW_FROM STRING_LITERAL)? KW_VIRTUAL? (
+        KW_COMMENT comment=STRING_LITERAL
+    )?
     ;
 
 computedColumnDefinition
@@ -272,7 +395,9 @@ watermarkDefinition
     ;
 
 tableConstraint
-    : (KW_CONSTRAINT constraintName)? KW_PRIMARY KW_KEY columnNameList KW_NOT KW_ENFORCED
+    : (KW_CONSTRAINT constraintName)? (KW_PRIMARY KW_KEY | KW_UNIQUE) columnNameList (
+        KW_NOT? KW_ENFORCED
+    )?
     ;
 
 constraintName
@@ -298,32 +423,80 @@ likeDefinition
     ;
 
 likeOption
-    : ((KW_INCLUDING | KW_EXCLUDING) (KW_ALL | KW_CONSTRAINTS | KW_PARTITIONS))
-    | ((KW_INCLUDING | KW_EXCLUDING | KW_OVERWRITING) (KW_GENERATED | KW_OPTIONS | KW_WATERMARKS))
+    : (KW_INCLUDING | KW_EXCLUDING | KW_OVERWRITING) (
+        KW_ALL
+        | KW_CONSTRAINTS
+        | KW_DISTRIBUTION
+        | KW_GENERATED
+        | KW_METADATA
+        | KW_OPTIONS
+        | KW_PARTITIONS
+        | KW_WATERMARKS
+    )
     ;
 
 createCatalog
-    : KW_CREATE KW_CATALOG catalogPathCreate withOption
+    : KW_CREATE (KW_OR KW_REPLACE)? KW_CATALOG ifNotExists? catalogPathCreate (
+        KW_COMMENT comment=STRING_LITERAL
+    )? withOption?
     ;
 
 createDatabase
-    : KW_CREATE KW_DATABASE ifNotExists? databasePathCreate (KW_COMMENT comment=STRING_LITERAL)? withOption
+    : KW_CREATE (KW_OR KW_REPLACE)? KW_DATABASE ifNotExists? databasePathCreate (
+        KW_COMMENT comment=STRING_LITERAL
+    )? withOption?
+    ;
+
+createModel
+    : KW_CREATE (KW_OR KW_REPLACE)? KW_TEMPORARY? KW_MODEL ifNotExists? uid (
+        KW_INPUT LR_BRACKET tableElement (COMMA tableElement)* RR_BRACKET
+    )? (KW_OUTPUT LR_BRACKET tableElement (COMMA tableElement)* RR_BRACKET)? (
+        KW_COMMENT comment=STRING_LITERAL
+    )? withOption? (KW_AS queryStatement)?
+    ;
+
+createConnection
+    : KW_CREATE (KW_OR KW_REPLACE)? KW_TEMPORARY? KW_SYSTEM? KW_CONNECTION ifNotExists? uid (
+        KW_COMMENT comment=STRING_LITERAL
+    )? withOption
+    ;
+
+createMaterializedTable
+    : KW_CREATE (KW_OR KW_ALTER)? KW_MATERIALIZED KW_TABLE tablePathCreate (
+        LR_BRACKET tableColumnsOrIdentifiers RR_BRACKET
+    )? (KW_COMMENT comment=STRING_LITERAL)? distribution? partitionedByClause? withOption? (
+        KW_START_MODE EQUAL_SYMBOL materializedTableStartMode
+    )? (KW_FRESHNESS EQUAL_SYMBOL expression)? (
+        KW_REFRESH_MODE EQUAL_SYMBOL (KW_FULL | KW_CONTINUOUS)
+    )? KW_AS queryStatement
+    ;
+
+materializedTableStartMode
+    : KW_FROM_BEGINNING
+    | KW_RESUME_OR_FROM_BEGINNING
+    | (KW_FROM_NOW | KW_RESUME_OR_FROM_NOW) (LR_BRACKET expression? RR_BRACKET)?
+    | (KW_FROM_TIMESTAMP | KW_RESUME_OR_FROM_TIMESTAMP) LR_BRACKET expression RR_BRACKET
     ;
 
 createView
-    : KW_CREATE KW_TEMPORARY? KW_VIEW ifNotExists? viewPathCreate columnNameList? (
+    : KW_CREATE (KW_OR KW_REPLACE)? KW_TEMPORARY? KW_VIEW ifNotExists? viewPathCreate columnNameList? (
         KW_COMMENT comment=STRING_LITERAL
     )? KW_AS queryStatement
     ;
 
 createFunction
-    : KW_CREATE (KW_TEMPORARY | KW_TEMPORARY KW_SYSTEM)? KW_FUNCTION ifNotExists? functionNameCreate KW_AS identifier (
-        KW_LANGUAGE (KW_JAVA | KW_SCALA | KW_PYTHON)
-    )? usingClause?
+    : KW_CREATE (KW_OR KW_REPLACE)? (KW_TEMPORARY | KW_TEMPORARY KW_SYSTEM)? KW_FUNCTION ifNotExists? functionNameCreate KW_AS (
+        identifier
+        | STRING_LITERAL
+    ) (KW_LANGUAGE (KW_JAVA | KW_SCALA | KW_SQL | KW_PYTHON))? usingClause? withOption?
     ;
 
 usingClause
-    : KW_USING KW_JAR STRING_LITERAL (COMMA KW_JAR STRING_LITERAL)*
+    : KW_USING resourceInfo (COMMA resourceInfo)*
+    ;
+
+resourceInfo
+    : (KW_JAR | KW_ARTIFACT) STRING_LITERAL
     ;
 
 // Alter statements
@@ -334,9 +507,88 @@ alterTable
     : KW_ALTER KW_TABLE ifExists? tablePath (
         renameDefinition
         | setKeyValueDefinition
+        | KW_RESET propertyKeyList
         | addConstraint
         | dropConstraint
         | addUnique
+        | alterTableAdd
+        | alterTableModify
+        | alterTableDrop
+    )
+    ;
+
+alterTableAdd
+    : KW_ADD ifNotExists? (partitionSpec withOption?)+
+    | KW_ADD KW_DISTRIBUTION distributionSpec
+    | KW_ADD alterTableSchemaChange
+    | KW_ADD LR_BRACKET alterTableSchemaChange (COMMA alterTableSchemaChange)* RR_BRACKET
+    ;
+
+alterTableModify
+    : KW_MODIFY KW_DISTRIBUTION distributionSpec
+    | KW_MODIFY alterTableSchemaChange
+    | KW_MODIFY LR_BRACKET alterTableSchemaChange (COMMA alterTableSchemaChange)* RR_BRACKET
+    ;
+
+alterTableSchemaChange
+    : columnOptionDefinition columnPosition?
+    | tableConstraint
+    | watermarkDefinition
+    ;
+
+columnPosition
+    : KW_AFTER columnName
+    | KW_FIRST
+    ;
+
+alterTableDrop
+    : KW_DROP ifExists? partitionSpec (COMMA partitionSpec)*
+    | KW_DROP (
+        columnNameList
+        | KW_PRIMARY KW_KEY
+        | KW_CONSTRAINT constraintName
+        | KW_DISTRIBUTION
+        | KW_WATERMARK
+        | columnName
+    )
+    ;
+
+propertyKeyList
+    : LR_BRACKET (tablePropertyKey (COMMA tablePropertyKey)*)? RR_BRACKET
+    ;
+
+alterMaterializedTable
+    : KW_ALTER KW_MATERIALIZED KW_TABLE tablePath (
+        KW_SUSPEND
+        | KW_RESUME withOption?
+        | KW_REFRESH partitionSpec?
+        | KW_SET (
+            KW_FRESHNESS EQUAL_SYMBOL expression
+            | KW_REFRESH_MODE EQUAL_SYMBOL (KW_FULL | KW_CONTINUOUS)
+            | tablePropertyList
+            | LR_BRACKET RR_BRACKET
+        )
+        | KW_RESET propertyKeyList
+        | KW_AS queryStatement
+        | alterTableAdd
+        | alterTableModify
+        | alterTableDrop
+    )
+    ;
+
+alterModel
+    : KW_ALTER KW_TEMPORARY? KW_MODEL ifExists? uid (
+        KW_RENAME KW_TO uid
+        | KW_SET tablePropertyList
+        | KW_RESET propertyKeyList
+    )
+    ;
+
+alterConnection
+    : KW_ALTER KW_TEMPORARY? KW_SYSTEM? KW_CONNECTION ifExists? uid (
+        KW_RENAME KW_TO uid
+        | KW_SET tablePropertyList
+        | KW_RESET propertyKeyList
     )
     ;
 
@@ -360,6 +612,14 @@ addUnique
     : KW_ADD KW_UNIQUE columnNameList
     ;
 
+alterCatalog
+    : KW_ALTER KW_CATALOG catalogPath (
+        KW_SET tablePropertyList
+        | KW_RESET propertyKeyList
+        | KW_COMMENT STRING_LITERAL
+    )
+    ;
+
 alterView
     : KW_ALTER KW_VIEW viewPath (renameDefinition | KW_AS queryStatement)
     ;
@@ -369,9 +629,10 @@ alterDatabase
     ;
 
 alterFunction
-    : KW_ALTER (KW_TEMPORARY | KW_TEMPORARY KW_SYSTEM)? KW_FUNCTION ifExists? functionName KW_AS identifier (
-        KW_LANGUAGE (KW_JAVA | KW_SCALA | KW_PYTHON)
-    )? // TODO
+    : KW_ALTER (KW_TEMPORARY | KW_TEMPORARY KW_SYSTEM)? KW_FUNCTION ifExists? functionName KW_AS (
+        identifier
+        | STRING_LITERAL
+    ) (KW_LANGUAGE (KW_JAVA | KW_SCALA | KW_SQL | KW_PYTHON))?
     ;
 
 // Drop statements
@@ -396,6 +657,18 @@ dropFunction
     : KW_DROP (KW_TEMPORARY | KW_TEMPORARY KW_SYSTEM)? KW_FUNCTION ifExists? functionName
     ;
 
+dropModel
+    : KW_DROP KW_TEMPORARY? KW_MODEL ifExists? uid
+    ;
+
+dropConnection
+    : KW_DROP KW_TEMPORARY? KW_SYSTEM? KW_CONNECTION ifExists? uid
+    ;
+
+dropMaterializedTable
+    : KW_DROP KW_MATERIALIZED KW_TABLE ifExists? tablePath
+    ;
+
 // Insert statements
 
 insertStatement
@@ -405,10 +678,18 @@ insertStatement
     ;
 
 insertSimpleStatement
-    : KW_INSERT (KW_INTO | KW_OVERWRITE) tablePath (
+    : (KW_INSERT (KW_INTO | KW_OVERWRITE) | KW_UPSERT KW_INTO) tablePath insertExtendedColumns? (
         (KW_PARTITION tablePropertyList)? columnNameList? queryStatement
         | valuesDefinition
-    )
+    ) onConflictClause?
+    ;
+
+insertExtendedColumns
+    : LR_BRACKET columnName columnType? (COMMA columnName columnType?)* RR_BRACKET
+    ;
+
+onConflictClause
+    : KW_ON KW_CONFLICT KW_DO (KW_ERROR | KW_NOTHING | KW_DEDUPLICATE)
     ;
 
 valuesDefinition
@@ -531,12 +812,20 @@ tablePrimary
     ;
 
 atomFunctionTable
-    : KW_LATERAL KW_TABLE LR_BRACKET functionCallExpression RR_BRACKET
+    : KW_LATERAL? KW_TABLE LR_BRACKET functionCallExpression RR_BRACKET
+    | tableFunctionCall
+    ;
+
+// A table function called directly in FROM, e.g. FROM ml_predict(TABLE t, MODEL m)
+tableFunctionCall
+    : functionNameWithParams LR_BRACKET (functionParam (COMMA functionParam)*)? RR_BRACKET
     ;
 
 atomExpressionTable
     : KW_LATERAL? LR_BRACKET queryStatement RR_BRACKET
-    | KW_UNNEST LR_BRACKET expression RR_BRACKET
+    | KW_LATERAL? KW_UNNEST LR_BRACKET expression (COMMA expression)* RR_BRACKET (
+        KW_WITH KW_ORDINALITY
+    )?
     ;
 
 systemTimePeriod
@@ -777,7 +1066,9 @@ valueExpression
 functionCallExpression
     : reservedKeywordsNoParamsUsedAsFuncName
     | functionNameAndParams
-    | functionNameWithParams LR_BRACKET (setQuantifier? functionParam (COMMA functionParam)*)? RR_BRACKET
+    | functionNameWithParams LR_BRACKET (setQuantifier? functionParam (COMMA functionParam)*)? (
+        (KW_RESPECT | KW_IGNORE) KW_NULLS
+    )? orderByClause? RR_BRACKET
     ;
 
 primaryExpression
@@ -838,7 +1129,11 @@ functionNameWithParams
     ;
 
 functionParam
-    : reservedKeywordsUsedAsFuncParam
+    : identifier DOUBLE_RIGHT_ARROW functionParam
+    | KW_TABLE tablePath
+    | KW_MODEL uid
+    | columnDescriptor
+    | reservedKeywordsUsedAsFuncParam
     | timeIntervalUnit
     | timePointUnit
     | expression
@@ -1244,52 +1539,86 @@ reservedKeywordsUsedAsFuncName
     | KW_JSON_OBJECTAGG
     | KW_JSON_ARRAY
     | KW_JSON_ARRAYAGG
+    | KW_ARRAY_AGG
+    | KW_DATE_DIFF
+    | KW_DATETIME_DIFF
     ;
 
 nonReservedKeywords
     : KW_ADD
     | KW_AFTER
+    | KW_ANALYZE
+    | KW_ARTIFACT
     | KW_ASC
     | KW_CASCADE
     | KW_CATALOG
     | KW_CENTURY
+    | KW_CHANGELOG_MODE
+    | KW_COLUMNS
+    | KW_COMPILE
+    | KW_COMPUTE
     | KW_CONFIG
+    | KW_CONFLICT
+    | KW_CONNECTION
     | KW_CONSTRAINTS
     | KW_CUMULATE
     | KW_DATA
     | KW_DATABASE
     | KW_DAYS
     | KW_DECADE
+    | KW_DEDUPLICATE
     | KW_DESC
     | KW_DESCRIPTOR
     | KW_DIV
+    | KW_DO
+    | KW_DRAIN
+    | KW_ENFORCED
     | KW_ENGINE
     | KW_EPOCH
+    | KW_ERROR
+    | KW_ESTIMATED_COST
     | KW_EXCLUDING
     | KW_FILE
     | KW_FIRST
+    | KW_FROM_BEGINNING
+    | KW_FROM_NOW
+    | KW_FROM_TIMESTAMP
     | KW_GENERATED
     | KW_HOP
     | KW_HOURS
     | KW_IGNORE
     | KW_INCLUDING
+    | KW_INPUT
     | KW_JAR
     | KW_JARS
     | KW_JAVA
+    | KW_JOB
+    | KW_JOBS
+    | KW_JSON_EXECUTION_PLAN
     | KW_KEY
     | KW_LAST
     | KW_LOAD
     | KW_MAP
+    | KW_METADATA
     | KW_MICROSECOND
     | KW_MILLENNIUM
     | KW_MILLISECOND
     | KW_MINUTES
+    | KW_MODEL
     | KW_MONTHS
     | KW_NANOSECOND
+    | KW_NOTHING
     | KW_NULLS
     | KW_OPTIONS
+    | KW_ORDINALITY
+    | KW_OUTPUT
+    | KW_OVERWRITE
+    | KW_OVERWRITING
+    | KW_PARTITIONED
+    | KW_PARTITIONS
     | KW_PAST
     | KW_PLAN
+    | KW_PLAN_ADVICE
     | KW_PRECEDING
     | KW_PYTHON
     | KW_PYTHON_ARCHIVES
@@ -1300,18 +1629,28 @@ nonReservedKeywords
     | KW_PYTHON_REQUIREMENTS
     | KW_QUARTER
     | KW_REMOVE
+    | KW_REPLACE
+    | KW_RESPECT
     | KW_RESTRICT
+    | KW_RESUME_OR_FROM_BEGINNING
+    | KW_RESUME_OR_FROM_NOW
+    | KW_RESUME_OR_FROM_TIMESTAMP
     | KW_SECONDS
     | KW_SESSION
     | KW_SETS
     | KW_SIZE
     | KW_SLIDE
+    | KW_START_MODE
+    | KW_STATISTICS
     | KW_STEP
+    | KW_STOP
     | KW_TEMPORARY
     | KW_TIMECOL
     | KW_TUMBLE
     | KW_UNLOAD
+    | KW_VARIANT
     | KW_VIEW
+    | KW_VIRTUAL
     | KW_WEEK
     | KW_YEARS
     | KW_ZONE
