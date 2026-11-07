@@ -1,6 +1,6 @@
 {
   "name": "dt-sql-parser",
-  "version": "4.6.0-flink2.3.0",
+  "version": "4.6.0-flink2.3.3",
   "authors": "DTStack Corporation",
   "description": "SQL Parsers for BigData, built with antlr4",
   "keywords": [
@@ -23,7 +23,6 @@
     "dist"
   ],
   "scripts": {
-    "prepare": "husky install",
     "prepublishOnly": "npm run build",
     "antlr4": "node ./scripts/antlr4.js",
     "build": "rm -rf dist && tsc",
