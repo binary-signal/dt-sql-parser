@@ -434,6 +434,8 @@ export class BasicSQL {
          */
         if (inputSlice !== input) {
             sqlParserIns = this.createParser(inputSlice);
+            // Errors of the fragment are expected (it ends at the caret): keep them off the console
+            sqlParserIns.removeErrorListeners();
             parseTree = sqlParserIns.program();
         }
         return {
@@ -549,6 +551,8 @@ export class BasicSQL {
          */
         if (inputSlice !== input) {
             sqlParserIns = this.createParser(inputSlice);
+            // Errors of the fragment are expected (it ends at the caret): keep them off the console
+            sqlParserIns.removeErrorListeners();
             parseTree = sqlParserIns.program();
         }
         const candidates = this.collectSuggestionCandidates(sqlParserIns, parseTree, caretTokenIndex);
