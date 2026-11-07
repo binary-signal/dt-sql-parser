@@ -1,0 +1,54 @@
+import { type AlterTableStmtContext, type ColumnCreateTableContext, type CommonTableExprContext, type ColumnNameCreateContext, type CreateDatabaseContext, type CreateForeignTableContext, type CreateFunctionStmtContext, type CreateMaterializedViewContext, type CreatePartitionForeignTableContext, type CreateViewContext, type DatabaseNameContext, type DatabaseNameCreateContext, FuncTableContext, type FunctionNameCreateContext, type InsertStatementContext, type ProcedureNameContext, type ProcedureNameCreateContext, type QueryCreateTableContext, SelectExpressionColumnNameContext, SelectLiteralColumnNameContext, SelectNoParensContext, type SelectStatementContext, SelectWithParensContext, type SingleStmtContext, TableAllColumnsContext, type TableNameContext, type TableNameCreateContext, Target_dot_emptyContext, Target_emptyContext, ColumnNamePath_dot_emptyContext, TargetListContext, type ViewNameContext, type ViewNameCreateContext, XmlTableContext } from '../../lib/postgresql/PostgreSqlParser';
+import type { PostgreSqlParserListener } from '../../lib/postgresql/PostgreSqlParserListener';
+import { EntityCollector } from '../common/entityCollector';
+export declare class PostgreSqlEntityCollector extends EntityCollector implements PostgreSqlParserListener {
+    /** ====== Entity Begin */
+    exitDatabaseName(ctx: DatabaseNameContext): void;
+    exitDatabaseNameCreate(ctx: DatabaseNameCreateContext): void;
+    exitTableName(ctx: TableNameContext): void;
+    exitXmlTable(ctx: XmlTableContext): void;
+    exitFuncTable(ctx: FuncTableContext): void;
+    exitSelectWithParens(ctx: SelectWithParensContext): void;
+    exitTableNameCreate(ctx: TableNameCreateContext): void;
+    exitCommonTableExpr(ctx: CommonTableExprContext): void;
+    exitViewName(ctx: ViewNameContext): void;
+    exitViewNameCreate(ctx: ViewNameCreateContext): void;
+    exitFunctionNameCreate(ctx: FunctionNameCreateContext): void;
+    exitColumnNameCreate(ctx: ColumnNameCreateContext): void;
+    exitTargetList(ctx: TargetListContext): void;
+    exitTableAllColumns(ctx: TableAllColumnsContext): void;
+    exitTarget_empty(ctx: Target_emptyContext): void;
+    exitTarget_dot_empty(ctx: Target_dot_emptyContext): void;
+    exitColumnNamePath_dot_empty(ctx: ColumnNamePath_dot_emptyContext): void;
+    exitSelectExpressionColumnName(ctx: SelectExpressionColumnNameContext): void;
+    exitSelectLiteralColumnName(ctx: SelectLiteralColumnNameContext): void;
+    exitProcedureName(ctx: ProcedureNameContext): void;
+    exitProcedureNameCreate(ctx: ProcedureNameCreateContext): void;
+    /** ===== Statement begin */
+    enterSingleStatement(ctx: SingleStmtContext): void;
+    exitSingleStatement(ctx: SingleStmtContext): void;
+    enterCreateDatabase(ctx: CreateDatabaseContext): void;
+    exitCreateDatabase(ctx: CreateDatabaseContext): void;
+    enterQueryCreateTable(ctx: QueryCreateTableContext): void;
+    exitQueryCreateTable(ctx: QueryCreateTableContext): void;
+    enterColumnCreateTable(ctx: ColumnCreateTableContext): void;
+    exitColumnCreateTable(ctx: ColumnCreateTableContext): void;
+    enterCreateForeignTable(ctx: CreateForeignTableContext): void;
+    exitCreateForeignTable(ctx: CreateForeignTableContext): void;
+    enterCreatePartitionForeignTable(ctx: CreatePartitionForeignTableContext): void;
+    exitCreatePartitionForeignTable(ctx: CreatePartitionForeignTableContext): void;
+    enterCreateView(ctx: CreateViewContext): void;
+    exitCreateView(ctx: CreateViewContext): void;
+    enterCreateMaterializedView(ctx: CreateMaterializedViewContext): void;
+    exitCreateMaterializedView(ctx: CreateMaterializedViewContext): void;
+    enterSelectStatement(ctx: SelectStatementContext): void;
+    exitSelectStatement(ctx: SelectStatementContext): void;
+    enterSelectNoParens(ctx: SelectNoParensContext): void;
+    exitSelectNoParens(ctx: SelectNoParensContext): void;
+    enterInsertStatement(ctx: InsertStatementContext): void;
+    exitInsertStatement(ctx: InsertStatementContext): void;
+    enterCreateFunctionStmt(ctx: CreateFunctionStmtContext): void;
+    exitCreateFunctionStmt(ctx: CreateFunctionStmtContext): void;
+    enterAlterTableStmt(ctx: AlterTableStmtContext): void;
+    exitAlterTableStmt(ctx: AlterTableStmtContext): void;
+}
