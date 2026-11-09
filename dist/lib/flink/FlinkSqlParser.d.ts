@@ -1551,6 +1551,7 @@ export declare class CreateTableAsSelectContext extends antlr.ParserRuleContext 
     distribution(): DistributionContext | null;
     partitionedByClause(): PartitionedByClauseContext | null;
     withOption(): WithOptionContext | null;
+    likeDefinition(): LikeDefinitionContext | null;
     KW_AS(): antlr.TerminalNode | null;
     queryStatement(): QueryStatementContext | null;
     STRING_LITERAL(): antlr.TerminalNode | null;
