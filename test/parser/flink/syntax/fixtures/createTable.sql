@@ -383,3 +383,11 @@ WITH
     'topic' = 'jnby_retail_order_history',
     'scan.startup.mode' = 'latest-offset'
   );
+-- LIKE without a column list: the columns come from the source table
+CREATE TABLE print_orders WITH ('connector' = 'print') LIKE Orders (EXCLUDING ALL);
+
+CREATE TEMPORARY TABLE IF NOT EXISTS print_orders WITH ('connector' = 'print') LIKE cat.db.Orders (EXCLUDING ALL);
+
+CREATE TABLE blackhole_orders WITH ('connector' = 'blackhole') LIKE Orders;
+
+CREATE TABLE orders_copy LIKE Orders;

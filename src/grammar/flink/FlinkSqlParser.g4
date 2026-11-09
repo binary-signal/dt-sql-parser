@@ -231,14 +231,16 @@ simpleCreateTable
     ;
 
 /*
- * CTAS / RTAS (CREATE OR REPLACE TABLE ... AS, REPLACE TABLE ... AS) and tables without a column list,
+ * CTAS / RTAS (CREATE OR REPLACE TABLE ... AS, REPLACE TABLE ... AS) and tables without a column list, which may
+ * also take their columns from LIKE (CREATE TABLE t WITH (...) LIKE source (EXCLUDING ALL)),
  * see https://nightlies.apache.org/flink/flink-docs-release-2.3/docs/dev/table/sql/create/#as-select_statement
  */
 createTableAsSelect
     : (KW_CREATE (KW_OR KW_REPLACE)? | KW_REPLACE) KW_TEMPORARY? KW_TABLE ifNotExists? tablePathCreate (
         LR_BRACKET tableColumnsOrIdentifiers RR_BRACKET
     )? (KW_COMMENT comment=STRING_LITERAL)? distribution? partitionedByClause? withOption? (
-        KW_AS queryStatement
+        likeDefinition
+        | KW_AS queryStatement
     )?
     ;
 
